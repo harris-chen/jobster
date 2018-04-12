@@ -1,3 +1,5 @@
 # Jobster
   A new social website helping you to get a job
-### Technologies: HTML, AngularJS, PHP, Bootstrap, MySQL
+  Technologies: HTML, AngularJS, PHP, Bootstrap, MySQL
+  
+  ### (Currently developing in localhost)
