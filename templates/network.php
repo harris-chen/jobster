@@ -1,19 +1,36 @@
+<ul class='nav'>
+  <li class='active'>Home</li>
+  <li>
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personal asset loans</a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">            
+        <li><a href="#">asds</a></li>
+        <li class="divider"></li>
+      </ul>
+    </div>   
+    </li>
+    <li>Payday loans</li>
+  <li>About</li>
+  <li>Contact</li>
+</ul>
+
+<!-- 
 <div ng-controller="networkCtrl">
 	<br>
 	<form id="networkform">
 	  <fieldset>
-	    <legend>Search for your friend</legend>
+	    <legend id="infomsg"></legend>
 
 	    
 	   	<div class="form-group">
 	      <label>Name</label>
-	      <input id="sname" ng-model="sname" name = "sname" class="form-control" placeholder="Enter friend's name" type="text">
+	      <input id="name" ng-model="name" name = "name" class="form-control" placeholder="Enter friend's name" type="text">
 	    </div>
 	   
 	    
 	    <div class="form-group">
 	      <label for="exampleSelect1">University</label>
-	      <select ng-model="university" name = "university" class="form-control" id="suniversity">
+	      <select ng-model="university" name = "university" class="form-control" id="university">
 				<option>American University</option>
 				<option>Arizona State University</option>
 				<option>Boston College</option>
@@ -121,7 +138,7 @@
 	    
 	    <div class="form-group">
 	      <label for="exampleSelect1">Major</label>
-	      <select ng-model="major" name = "major" class="form-control" id="smajor">
+	      <select ng-model="major" name = "major" class="form-control" id="major">
 			<option>Accounting</option>
 			<option>Actuarial Science</option>
 			<option>Advertising</option>
@@ -236,7 +253,34 @@
 		
 	  </fieldset>
 	</form>
-	
+
+			<table class="table table-hover">
+			  <thead>
+			  
+			    <tr>
+			      <th id="fn" scope="col"></th>
+			      <th id="ln" scope="col"></th>
+			      <th id="em" scope="col"></th>
+			      <th id="uv" scope="col"></th>
+			      <th id="dg" scope="col"></th>
+			      <th id="mg" scope="col"></th>
+			      <th id="ac" scope="col"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr ng-repeat="network in networks.info">
+			      <td>{{network.sfname}}</td>
+			      <td>{{network.slname}}</td>
+			      <td>{{network.semail}}</td>
+			      <td>{{network.suniversity}}</td>
+			      <td>{{network.sdegree}}</td>
+			      <td>{{network.smajor}}</td>
+			      <td><button type="button" class="btn btn-secondary">Add Friend</button></td>
+			    </tr>
+			  </tbody>
+			</table> 
+
 
 </div>
 <br>
+-->

@@ -22,10 +22,6 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/network.php',
 		controller: 'networkCtrl'
 	})
-	.when('/allnetwork', {
-		templateUrl: 'templates/allnetwork.php',
-		controller: 'allnetworkCtrl'
-	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -113,6 +109,7 @@ myApp.controller("logoutCtrl", function($scope, $http){
 	})
 });
 myApp.controller("networkCtrl", function($scope, $http){
+	$("#infomsg").html("Search for your friend");
 	$("#submit").click(function(){
 		var name = $("#name").val();
 		var datastring = $("#networkform").serialize();
@@ -122,15 +119,27 @@ myApp.controller("networkCtrl", function($scope, $http){
 			data: datastring,
 			cache: false,
 			success: function(result){
-				window.location.href="#/allnetwork";				
+				$("#infomsg").html(result.info.length + " people matching your result");
+				$("#fn").html("First Name");
+				$("#ln").html("Last Name");
+				$("#em").html("Email");
+				$("#uv").html("University");
+				$("#dg").html("Degree");
+				$("#mg").html("Major");
+				$scope.networks = result;
+				$scope.$apply(); },
+		  	error: function(XMLHttpRequest, textStatus, errorThrown){
+		  		$("#infomsg").html("0 people matching your result");
+				$("#fn").html("");
+				$("#ln").html("");
+				$("#em").html("");
+				$("#uv").html("");
+				$("#dg").html("");
+				$("#mg").html("");
+		  		$scope.networks = "";
+		  		$scope.$apply();
 			}
 		});
 	return false;
 	});
-});
-myApp.controller("allnetworkCtrl", function($scope, $http){
-	$http.get("http://localhost/jobster/webservices/studentnetwork.php")
-	.then(function(response){
-		$scope.networks = response.data;
-	})
 });

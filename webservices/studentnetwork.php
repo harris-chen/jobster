@@ -1,7 +1,17 @@
 <?php 
     session_start();
     require_once('connect.php');
-    $query = "select * from student where semail <> '". $_SESSION['userid'] . "' and (sfname like '%" . $_POST['sname'] . "%')";
+    if($_POST['university'] == "? undefined:undefined ?"){
+        $univ = "";
+    }else{
+        $univ = $_POST['university'];
+    }
+    if($_POST['major'] == "? undefined:undefined ?"){
+        $major = "";
+    }else{
+        $major = $_POST['major'];
+    }
+    $query = "select * from student where semail <> '". $_SESSION['userid'] . "' and (sfname like '%" . $_POST['name'] . "%' or slname like '%" . $_POST['name'] . "%') and suniversity like '%" . $univ . "%' and smajor like '%" . $major . "%' order by suniversity, sfname, slname ";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
