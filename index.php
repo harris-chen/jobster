@@ -1,3 +1,9 @@
+<?php
+  session_start();  
+  $_SESSION['user'] = "Hao";
+  $_SESSION['userid'] = "hao.chen@nyu.edu";
+  //session_unset();
+?>
 <!DOCTYPE html>
 <meta charset="utf-8"/>
 <html ng-app="jobster">
@@ -13,27 +19,61 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="">Jobster</a>
+	  <a class="navbar-brand" href="#">Jobster</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	
+
 	  <div class="collapse navbar-collapse" id="navbarColor01">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="">Home</a>
+	        <a class="nav-link" href="#">Home</a>
 	      </li>
-	      <li class="nav-item">
+	      <?php
+			if(isset($_SESSION['user'])){
+		  ?>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#/network">Network</a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="">Friends</a>
+	      </li>
+	      <?php
+		  }else if(isset($_SESSION['company'])){
+		  ?>
+		  <?php
+		  }else{
+		  ?>
+	      <li class="nav-item active">
 	        <a class="nav-link" href="">Employer/Post Jobs</a>
 	      </li>
+	      <?php
+		  }
+	      ?>
 	    </ul>
 	    
-		  <form class="form-inline my-2 my-lg-0">
+	    <?php
+		if(isset($_SESSION['user'])){
+		?>
+	    	<a class="navbar-brand" href="#">Hi, <?php echo $_SESSION['user'] ?></a>
+	    	<form class="form-inline my-2 my-lg-0" action = "#/logout">
+		      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Log out</button>
+	        </form>
+	    <?php 
+	    	}else{
+	    ?>
+		  <form class="form-inline my-2 my-lg-0" action = "#/login">
 	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
+	      	&nbsp; &nbsp; 
 	      </form>
+		  <form class="form-inline my-2 my-lg-0" action = "#/register">
+	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Register</button>
+	      </form>	      
+	    <?php 
+	    	}
+	    ?>	      
 	  </div>
 	</nav>
-	
 	
 	
 	<div class = "container">
