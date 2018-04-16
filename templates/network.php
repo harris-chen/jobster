@@ -1,20 +1,3 @@
-<ul class='nav'>
-  <li class='active'>Home</li>
-  <li>
-    <div class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personal asset loans</a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">            
-        <li><a href="#">asds</a></li>
-        <li class="divider"></li>
-      </ul>
-    </div>   
-    </li>
-    <li>Payday loans</li>
-  <li>About</li>
-  <li>Contact</li>
-</ul>
-
-<!-- 
 <div ng-controller="networkCtrl">
 	<br>
 	<form id="networkform">
@@ -254,33 +237,34 @@
 	  </fieldset>
 	</form>
 
-			<table class="table table-hover">
-			  <thead>
-			  
-			    <tr>
-			      <th id="fn" scope="col"></th>
-			      <th id="ln" scope="col"></th>
-			      <th id="em" scope="col"></th>
-			      <th id="uv" scope="col"></th>
-			      <th id="dg" scope="col"></th>
-			      <th id="mg" scope="col"></th>
-			      <th id="ac" scope="col"></th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr ng-repeat="network in networks.info">
-			      <td>{{network.sfname}}</td>
-			      <td>{{network.slname}}</td>
-			      <td>{{network.semail}}</td>
-			      <td>{{network.suniversity}}</td>
-			      <td>{{network.sdegree}}</td>
-			      <td>{{network.smajor}}</td>
-			      <td><button type="button" class="btn btn-secondary">Add Friend</button></td>
-			    </tr>
-			  </tbody>
-			</table> 
-
-
+	<form>
+	<table class="table table-hover">
+	  <thead>
+	  
+	    <tr>
+	      <th id="fn" scope="col"></th>
+	      <th id="ln" scope="col"></th>
+	      <th id="em" scope="col"></th>
+	      <th id="uv" scope="col"></th>
+	      <th id="dg" scope="col"></th>
+	      <th id="mg" scope="col"></th>
+	      <th id="ac" scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="network in networks.info">
+	      <td>{{network.sfname}}</td>
+	      <td>{{network.slname}}</td>
+	      <td>{{network.semail}}</td>
+	      <td>{{network.suniversity}}</td>
+	      <td>{{network.sdegree}}</td>
+	      <td>{{network.smajor}}</td>
+	      <input type="hidden" name="semail" value={{network.semail}}>
+	      <td><button type="submit" id="addfriend" class="btn btn-secondary">Add Friend</button></td>
+	    </tr>
+	  </tbody>
+	  <font id="msg" color="red"></font>
+	</table> 
+	</form>
 </div>
 <br>
--->

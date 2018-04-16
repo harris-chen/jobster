@@ -140,6 +140,9 @@ myApp.controller("networkCtrl", function($scope, $http){
 		  		$scope.$apply();
 			}
 		});
-	return false;
 	});
+	$("#addfriend").click(function(){
+		window.alert("HI");
+	});
+	return false;
 });
