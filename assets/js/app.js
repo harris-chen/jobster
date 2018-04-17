@@ -22,6 +22,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/network.php',
 		controller: 'networkCtrl'
 	})
+	.when('/requests', {
+		templateUrl: 'templates/request.php',
+		controller: 'requestCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -157,4 +161,40 @@ myApp.controller("networkCtrl", function($scope, $http){
 		});
 	};
 	return false;
+});
+
+myApp.controller("requestCtrl", function($scope, $http){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentrequests.php',
+			cache: false,
+			success: function(result){
+				$("#fn").html("First Name");
+				$("#ln").html("Last Name");
+				$("#em").html("Email");
+				$("#uv").html("University");
+				$("#dg").html("Degree");
+				$("#mg").html("Major");
+				if(result.info.length<=0){
+					$scope.requestlength = 0;
+				}else{
+					$scope.requestlength = result.info.length;
+				}
+				$scope.requests = result;
+				$scope.$apply();
+			}
+	});
+
+	
+	/*$http.get("http://localhost/jobster/webservices/studentrequests.php")
+	.then(function(response){
+		$("#infomsg").html(response);
+		$("#fn").html("First Name");
+		$("#ln").html("Last Name");
+		$("#em").html("Email");
+		$("#uv").html("University");
+		$("#dg").html("Degree");
+		$("#mg").html("Major");
+		$scope.requests = response;
+	})*/
 });

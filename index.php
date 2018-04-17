@@ -1,7 +1,7 @@
 <?php
   session_start();  
-  $_SESSION['user'] = "Hao";
-  $_SESSION['userid'] = "hao.chen@nyu.edu";
+  //$_SESSION['user'] = "Hao";
+  //$_SESSION['userid'] = "hao.chen@nyu.edu";
   //$_SESSION['user'] = "Yiju";
   //$_SESSION['userid'] = "yiju.lai@nyu.edu";
   //session_unset();
@@ -41,10 +41,10 @@
 	        <a class="nav-link" href="#/network">Networks</a>
 	      </li>	      
 	      <li class="nav-item active">
-	        <a class="nav-link" href="">Friends</a>
+	        <a class="nav-link" href="#/friends">Friends</a>
 	      </li>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="">Requests</a>
+	        <a class="nav-link" href="#/requests">Requests</a>
 	      </li>
 	      <?php
 		  }else if(isset($_SESSION['company'])){
