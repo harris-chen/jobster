@@ -237,7 +237,7 @@
 	  </fieldset>
 	</form>
 
-	<form>
+	<form >
 	<table class="table table-hover">
 	  <thead>
 	  
@@ -259,8 +259,7 @@
 	      <td>{{network.suniversity}}</td>
 	      <td>{{network.sdegree}}</td>
 	      <td>{{network.smajor}}</td>
-	      <input type="hidden" name="semail" value={{network.semail}}>
-	      <td><button type="submit" id="addfriend" class="btn btn-secondary">Add Friend</button></td>
+	      <td><button type="submit" ng-click="addfriend($index)" class="btn btn-primary">Add Friend</button></td>
 	    </tr>
 	  </tbody>
 	  <font id="msg" color="red"></font>

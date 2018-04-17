@@ -260,14 +260,9 @@
 	    
 	    <div class="form-group">
 	      <label for="exampleInputFile">Resume</label>
-	      <input class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" type="file">
-	      <small id="fileHelp" class="form-text text-muted">Please select resume in PDF file</small>
+	      <input class="form-control-file" id="sresume" ng-model="sresume" name = "sresume" aria-describedby="fileHelp" type="file">
+	      <small id="fileHelp" class="form-text text-muted">Please select resume in txt file</small>
 	    </div>	    
-	    
-		<div class="form-group">
-	      <label for="exampleTextarea">Plain Text Resume*</label>
-	      <textarea ng-model="sresumetext" name = "sresumetext" class="form-control" id="sresumetext" rows="5"></textarea>
-	    </div>
 
 	    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
 	    

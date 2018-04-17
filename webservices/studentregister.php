@@ -9,7 +9,8 @@
     $smajor = $_POST['smajor'];
     $sgpa = $_POST['sgpa'];
     $sintro = $_POST['sintro'];
-    $sresumetext = $_POST['sresumetext'];
+    $sresume = addslashes($_FILES['sresume']['tmp_name']);
+    $sresume = file_get_contents($sresume);
     
     $query = "select semail from student";
     $response = @mysqli_query($dbc, $query);
@@ -24,7 +25,7 @@
     }else{
         $query = "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?)";
         $stmt = mysqli_prepare($dbc,$query);
-        mysqli_stmt_bind_param($stmt,"sssssssdss", $semail, $spassword, $sfname, $slname, $suniversity, $sdegree, $smajor, $sgpa, $sintro, $sresumetext);
+        mysqli_stmt_bind_param($stmt,"sssssssdss", $semail, $spassword, $sfname, $slname, $suniversity, $sdegree, $smajor, $sgpa, $sintro, $sresume);
         mysqli_stmt_execute($stmt);
         echo "Success";
         session_start();

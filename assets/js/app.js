@@ -38,9 +38,20 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 		var smajor = $("#smajor").val();
 		var sgpa = $("#sgpa").val();
 		var sintro = $("#sintro").val();
-		var sresumetext = $("#sresumetext").val();
-		var datastring = $("#registerform").serialize();
-		if(semail == "" || spassword == "" || sfname == "" || slname == "" || suniversity == "" || sdegree == "" || smajor == "" || sgpa == "" || sresumetext == ""){
+
+		var datastring = new FormData();
+		datastring.append('sresume', $('input[type=file]')[0].files[0]);
+		datastring.append('semail', semail);
+		datastring.append('spassword', spassword);
+		datastring.append('sfname', sfname);
+		datastring.append('slname', slname);
+		datastring.append('suniversity', suniversity);
+		datastring.append('sdegree', sdegree);
+		datastring.append('smajor', smajor);
+		datastring.append('sgpa', sgpa);
+		datastring.append('sintro', sintro);
+		
+		if(semail == "" || spassword == "" || sfname == "" || slname == "" || suniversity == "" || sdegree == "" || smajor == "" || sgpa == ""){
 			$("#infomsg").html("Please fill out all details");
 		}else if(spassword.length >30 || spassword.length < 6){
 			$("#infomsg").html("Password length should be between 6-30 characters");
@@ -50,20 +61,12 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 				url: 'http://localhost/jobster/webservices/studentregister.php',
 				data: datastring,
 				cache: false,
+				processData: false,
+				contentType: false,
 				success: function(result){
 					if(result == "Failed"){
 						$("#infomsg").html("Email exists in database. Please log in or use other email address.");
 					}else{
-						var semail = $("#semail").val("");
-						var spassword= $("#spassword").val("");
-						var sfname = $("#sfname").val("");
-						var slname = $("#slname").val("");
-						var suniversity = $("#suniversity").val("");
-						var sdegree = $("#sdegree").val("");
-						var smajor = $("#smajor").val("");
-						var sgpa = $("#sgpa").val("");
-						var sintro = $("#sintro").val("");
-						var sresumetext = $("#sresumetext").val("");
 						window.location.href="http://localhost/jobster";
 					}
 				}
@@ -141,8 +144,17 @@ myApp.controller("networkCtrl", function($scope, $http){
 			}
 		});
 	});
-	$("#addfriend").click(function(){
-		window.alert("HI");
-	});
+	 $scope.addfriend = function(i) {
+		 var semail = $scope.networks.info[i].semail;
+		 $.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/studentaddfriend.php',
+				data: {semail, semail},
+				cache: false,
+				success: function(result){
+					window.alert("Success! Invitation has sent to " + semail);
+				}
+		});
+	};
 	return false;
 });
