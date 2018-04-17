@@ -53,7 +53,7 @@
 		  }else{
 		  ?>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="">Employer/Post Jobs</a>
+	        <a class="nav-link" href="#/employer">Employer/Post Jobs</a>
 	      </li>
 	      <?php
 		  }

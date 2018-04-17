@@ -30,6 +30,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/friend.php',
 		controller: 'friendCtrl'
 	})
+	.when('/employer', {
+		templateUrl: 'templates/companydefault.php',
+		controller: 'companydefaultCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -253,4 +257,7 @@ myApp.controller("friendCtrl", function($scope, $http){
 	 		}
 	});
 	return false;	 
+});
+
+myApp.controller("companydefaultCtrl", function($scope){
 });
