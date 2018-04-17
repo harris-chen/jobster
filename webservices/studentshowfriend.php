@@ -11,7 +11,7 @@
             $suniversity = $row['suniversity'];
             $sdegree = $row['sdegree'];
             $smajor = $row['smajor'];
-            $result[] = array('semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'suniversity'=>$suniversity, 'sdegree'=>$sdegree, 'smajor'=>$smajor);
+            $result[] = array('semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'suniversity'=>$suniversity, 'sdegree'=>$sdegree, 'smajor'=>$smajr);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{
