@@ -7,14 +7,14 @@
 	  <thead>
 	  
 	    <tr>
-	      <th id="fn" scope="col"></th>
-	      <th id="ln" scope="col"></th>
-	      <th id="em" scope="col"></th>
-	      <th id="uv" scope="col"></th>
-	      <th id="dg" scope="col"></th>
-	      <th id="mg" scope="col"></th>
-	      <th id="ac" scope="col"></th>
-	      <th id="ac" scope="col"></th>
+	      <th id="fnrequest" scope="col"></th>
+	      <th id="lnrequest" scope="col"></th>
+	      <th id="emrequest" scope="col"></th>
+	      <th id="uvrequest" scope="col"></th>
+	      <th id="dgrequest" scope="col"></th>
+	      <th id="mgrequest" scope="col"></th>
+	      <th id="acrequest" scope="col"></th>
+	      <th id="acrequest" scope="col"></th>
 	    </tr>
 	  </thead>
 	  <tbody>

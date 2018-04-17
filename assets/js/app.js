@@ -26,6 +26,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/request.php',
 		controller: 'requestCtrl'
 	})
+	.when('/friends', {
+		templateUrl: 'templates/friend.php',
+		controller: 'friendCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -169,32 +173,84 @@ myApp.controller("requestCtrl", function($scope, $http){
 			url: 'http://localhost/jobster/webservices/studentrequests.php',
 			cache: false,
 			success: function(result){
-				$("#fn").html("First Name");
-				$("#ln").html("Last Name");
-				$("#em").html("Email");
-				$("#uv").html("University");
-				$("#dg").html("Degree");
-				$("#mg").html("Major");
-				if(result.info.length<=0){
-					$scope.requestlength = 0;
-				}else{
-					$scope.requestlength = result.info.length;
-				}
+				$("#fnrequest").html("First Name");
+				$("#lnrequest").html("Last Name");
+				$("#emrequest").html("Email");
+				$("#uvrequest").html("University");
+				$("#dgrequest").html("Degree");
+				$("#mgrequest").html("Major");
+				$scope.requestlength = result.info.length;
 				$scope.requests = result;
 				$scope.$apply();
-			}
+			},
+	 		error: function(XMLHttpRequest, textStatus, errorThrown){
+	 			$scope.requestlength = 0
+	 			$scope.requests = "";
+				$scope.$apply();
+	 		}
 	});
+	$scope.accept = function(i) {
+		 var semail = $scope.requests.info[i].semail;
+		 $.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/studentacceptfriend.php',
+				data: {semail, semail},
+				cache: false,
+				success: function(result){
+					$scope.requestlength = result.info.length;
+					$scope.requests = result;
+					$scope.$apply();
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+		 			$scope.requestlength = 0
+		 			$scope.requests = "";
+					$scope.$apply();
+		 		}
+		});
+	};
+	$scope.decline = function(i) {
+		 var semail = $scope.requests.info[i].semail;
+		 $.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/studentdeclinefriend.php',
+				data: {semail, semail},
+				cache: false,
+				success: function(result){
+					$scope.requestlength = result.info.length;
+					$scope.requests = result;
+					$scope.$apply();
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+		 			$scope.requestlength = 0
+		 			$scope.requests = "";
+					$scope.$apply();
+		 		}
+		});
+	};
+	return false;	 
+});
 
-	
-	/*$http.get("http://localhost/jobster/webservices/studentrequests.php")
-	.then(function(response){
-		$("#infomsg").html(response);
-		$("#fn").html("First Name");
-		$("#ln").html("Last Name");
-		$("#em").html("Email");
-		$("#uv").html("University");
-		$("#dg").html("Degree");
-		$("#mg").html("Major");
-		$scope.requests = response;
-	})*/
+myApp.controller("friendCtrl", function($scope, $http){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentshowfriend.php',
+			cache: false,
+			success: function(result){
+				$("#fnfriend").html("First Name");
+				$("#lnfriend").html("Last Name");
+				$("#emfriend").html("Email");
+				$("#uvfriend").html("University");
+				$("#dgfriend").html("Degree");
+				$("#mgfriend").html("Major");
+				$scope.friendlength = result.info.length;
+				$scope.friends = result;
+				$scope.$apply();
+			},
+	 		error: function(XMLHttpRequest, textStatus, errorThrown){
+	 			$scope.friendlength = 0
+	 			$scope.friends = "";
+				$scope.$apply();
+	 		}
+	});
+	return false;	 
 });
