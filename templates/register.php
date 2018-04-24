@@ -262,7 +262,13 @@
 	      <label for="exampleInputFile">Resume</label>
 	      <input class="form-control-file" id="sresume" ng-model="sresume" name = "sresume" aria-describedby="fileHelp" type="file">
 	      <small id="fileHelp" class="form-text text-muted">Please select resume in txt file</small>
-	    </div>	    
+	    </div>	 
+	    
+	    <div class="form-group">
+	      <label for="exampleInputFile">Profile Picture</label>
+	      <input class="form-control-file" id="simage" ng-model="simage" name = "simage" aria-describedby="fileHelp" type="file">
+	      <small id="fileHelp" class="form-text text-muted">Recommended size 300*300</small>
+	    </div>	   
 
 	    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
 	    

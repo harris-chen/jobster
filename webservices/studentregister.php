@@ -9,8 +9,20 @@
     $smajor = $_POST['smajor'];
     $sgpa = $_POST['sgpa'];
     $sintro = $_POST['sintro'];
-    $sresume = addslashes($_FILES['sresume']['tmp_name']);
-    $sresume = file_get_contents($sresume);
+    if(isset($_FILES['sresume'])){
+        $sresume = addslashes($_FILES['sresume']['tmp_name']);
+        $sresume = file_get_contents($sresume);
+    }else{
+        $sresume = '';
+    }
+    if(isset($_FILES['simage'])){
+        $simage = addslashes($_FILES['simage']['tmp_name']);
+        $simage = file_get_contents($simage);
+        $simage = base64_encode($simage);
+    }else{
+        $simage = '';
+    }
+    
     
     $query = "select semail from student";
     $response = @mysqli_query($dbc, $query);
@@ -23,7 +35,7 @@
     if(in_array($_POST['semail'], $a, false)){
         echo "Failed";
     }else{
-        $query = "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?)";
+        $query = "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?, '" . $simage . "')";
         $stmt = mysqli_prepare($dbc,$query);
         mysqli_stmt_bind_param($stmt,"sssssssdss", $semail, $spassword, $sfname, $slname, $suniversity, $sdegree, $smajor, $sgpa, $sintro, $sresume);
         mysqli_stmt_execute($stmt);

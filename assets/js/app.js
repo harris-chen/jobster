@@ -30,6 +30,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/friend.php',
 		controller: 'friendCtrl'
 	})
+	.when('/profile', {
+		templateUrl: 'templates/profile.php',
+		controller: 'profileCtrl'
+	})
 	.when('/employer', {
 		templateUrl: 'templates/companydefault.php',
 		controller: 'companydefaultCtrl'
@@ -53,6 +57,7 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 
 		var datastring = new FormData();
 		datastring.append('sresume', $('input[type=file]')[0].files[0]);
+		datastring.append('simage', $('input[type=file]')[1].files[0]);
 		datastring.append('semail', semail);
 		datastring.append('spassword', spassword);
 		datastring.append('sfname', sfname);
@@ -76,6 +81,7 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 				processData: false,
 				contentType: false,
 				success: function(result){
+					$("#infomsg").html(result);
 					if(result == "Failed"){
 						$("#infomsg").html("Email exists in database. Please log in or use other email address.");
 					}else{
@@ -257,6 +263,19 @@ myApp.controller("friendCtrl", function($scope, $http){
 	 		}
 	});
 	return false;	 
+});
+
+myApp.controller("profileCtrl", function($scope){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentprofile.php',
+			cache: false,
+			success: function(result){
+				$scope.profile = result;
+				$scope.$apply();
+			}
+	});
+	return false;	
 });
 
 myApp.controller("companydefaultCtrl", function($scope){
