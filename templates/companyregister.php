@@ -1,42 +1,16 @@
-<?php 
-session_start();
-?>
-<div class="horizontalDIV" ng-controller="profileCtrl">
-	
-    <div class="left">
-    <img ng-src="data:image/JPEG;base64,{{profile.info[0].simage}}">
-    </div>
-    
-    
-    
-    
-    <div class="right" id="noedit">
-        <br>
-        <br>
-        <form>
-        <legend>{{profile.info[0].sfname}} {{profile.info[0].slname}} &nbsp;&nbsp;
-        	    <button type="submit" ng-click="editprofile()" class="btn btn-secondary">Edit</button></legend></form>
-    	<legend>{{profile.info[0].suniversity}}</legend>
-    	<legend>{{profile.info[0].sdegree}}, {{profile.info[0].smajor}}</legend>
-    	<hr class="my-4">
-    	<p>{{profile.info[0].sintro}}</p>
-    	<br>
-    	<form action = "http://localhost/jobster/webservices/studentresumedownload.php" method="post">
-    	<input id="semail" ng-model="semail" name = "semail" type="hidden" value="<?php echo $_SESSION['userid']?>">
-    	<button type="submit" class="btn btn-primary">Download Resume</button>
-    	</form>
-    </div>
-
-    <div class="right" id="edit">
-        <br>
-        <br>
-        <form>
-        <label for="exampleInputPassword1">Email: {{profile.info[0].semail}}</label>
-        
-        <br>
+<div ng-controller="companyregisterCtrl">
+	<br>
+	<form id="companyregisterform">
+	  <fieldset>
+	    <legend>Please fill out your information</legend>
+	    <div class="form-group">
+	      <label for="exampleInputEmail1">Email address*</label>
+	      <input ng-model="semail" name = "semail" class="form-control" id="semail" aria-describedby="emailHelp" placeholder="Enter email" type="email">
+	      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+	    </div>
 	    <div class="form-group">
 	      <label for="exampleInputPassword1">Password*</label>
-	      <input ng-model="spassword" name = "spassword" class="form-control" id="spassword"  type="password">
+	      <input ng-model="spassword" name = "spassword" class="form-control" id="spassword" placeholder="Password 6-30 Characters" type="password">
 	    </div>
 	    
 	   	<div class="form-group">
@@ -297,29 +271,15 @@ session_start();
 	    </div>	   
 
 	    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-    	</form>
-    	<font id="infomsg" color="red"></font>
-    </div>    
-    
+	    
+	    <font id="infomsg" color="red"></font>
+	    
+	    <br>
+	    <br>
+		
+	  </fieldset>
+	</form>
+	
+
 </div>
-
-
-
-
-
-
-
-<style type="text/css">
-    div.horizontalDIV {
-        margin: 15px;   
-    }
-    div.left {
-        float: left;
-        padding: 50px;    
-    }
-    div.right {
-        float: left;
-        padding: 10px;  
-        max-width: 750px; 
-    }
-</style>
+<br>

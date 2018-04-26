@@ -38,9 +38,17 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companydefault.php',
 		controller: 'companydefaultCtrl'
 	})
+	.when('/companyregister', {
+		templateUrl: 'templates/companyregister.php',
+		controller: 'companyregisterCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 });
 
 myApp.controller("registerCtrl", function($scope, $http, $window){
@@ -266,6 +274,8 @@ myApp.controller("friendCtrl", function($scope, $http){
 });
 
 myApp.controller("profileCtrl", function($scope){
+	$("#edit").hide();
+	$("#noeditedit").show();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentprofile.php',
@@ -275,8 +285,64 @@ myApp.controller("profileCtrl", function($scope){
 				$scope.$apply();
 			}
 	});
+	 $scope.editprofile = function(i) {
+		 $("#noedit").hide();
+		 $("#edit").show();
+		 $("#submit").click(function(){
+			var spassword= $("#spassword").val();
+			var sfname = $("#sfname").val();
+			var slname = $("#slname").val();
+			var suniversity = $("#suniversity").val();
+			var sdegree = $("#sdegree").val();
+			var smajor = $("#smajor").val();
+			var sgpa = $("#sgpa").val();
+			var sintro = $("#sintro").val();
+
+			var datastring = new FormData();
+			datastring.append('sresume', $('input[type=file]')[0].files[0]);
+			datastring.append('simage', $('input[type=file]')[1].files[0]);
+			datastring.append('spassword', spassword);
+			datastring.append('sfname', sfname);
+			datastring.append('slname', slname);
+			datastring.append('suniversity', suniversity);
+			datastring.append('sdegree', sdegree);
+			datastring.append('smajor', smajor);
+			datastring.append('sgpa', sgpa);
+			datastring.append('sintro', sintro);
+			
+			if(spassword == "" || sfname == "" || slname == "" || suniversity == "" || sdegree == "" || smajor == "" || sgpa == ""){
+				$("#infomsg").html("Please fill out all details");
+			}else if(spassword.length >30 || spassword.length < 6){
+				$("#infomsg").html("Password length should be between 6-30 characters");
+			}else{
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/studentmodifyprofile.php',
+					data: datastring,
+					cache: false,
+					processData: false,
+					contentType: false,
+					success: function(result){
+						$("#infomsg").html("");
+						$("#edit").hide();
+						$("#noedit").show();
+						$("#noeditedit").show();
+						window.location.href="http://localhost/jobster";
+					}
+				});
+			}
+		 });
+	 };
 	return false;	
 });
 
 myApp.controller("companydefaultCtrl", function($scope){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+});
+
+myApp.controller("companyregisterCtrl", function($scope){
+
 });

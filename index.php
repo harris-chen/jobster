@@ -1,7 +1,7 @@
 <?php
   session_start();  
-  $_SESSION['user'] = "Hao";
-  $_SESSION['userid'] = "hao.chen@nyu.edu";
+  //$_SESSION['user'] = "Hao";
+  //$_SESSION['userid'] = "hao.chen@nyu.edu";
   //$_SESSION['user'] = "Yiju";
   //$_SESSION['userid'] = "yiju.lai@nyu.edu";
   //session_unset();
@@ -73,13 +73,21 @@
 	    <?php 
 	    	}else{
 	    ?>
-		  <form class="form-inline my-2 my-lg-0" action = "#/login">
+		  <form class="form-inline my-2 my-lg-0" action = "#/login" id="slogin">
 	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
 	      	&nbsp; &nbsp; 
 	      </form>
-		  <form class="form-inline my-2 my-lg-0" action = "#/register">
+		  <form class="form-inline my-2 my-lg-0" action = "#/register" id="sregister">
 	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Register</button>
-	      </form>	      
+	      	&nbsp; &nbsp; 
+	      </form>	
+	      <form class="form-inline my-2 my-lg-0" action = "#/companylogin" id="clogin">
+	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Company Login</button>
+	      	&nbsp; &nbsp; 
+	      </form>
+		  <form class="form-inline my-2 my-lg-0" action = "#/companyregister" id="cregister">
+	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Company Register</button> 
+	      </form>	
 	    <?php 
 	    	}
 	    ?>	      
