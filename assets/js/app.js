@@ -42,6 +42,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companyregister.php',
 		controller: 'companyregisterCtrl'
 	})
+	.when('/companylogin', {
+		templateUrl: 'templates/companylogin.php',
+		controller: 'companyloginCtrl'
+	})
 	.when('/companylogout', {
 		templateUrl: 'templates/logout.php',
 		controller: 'companylogoutCtrl'
@@ -419,7 +423,41 @@ myApp.controller("companyregisterCtrl", function($scope){
 		return false;
 	});
 });
+myApp.controller("companyloginCtrl", function($scope, $http){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+	$("#companylogin").click(function(){
+		var datastring = $("#companyloginform").serialize();
+		
+		if(cemail == "" || cpassword == "" ){
+			$("#infomsg").html("Please fill out all details");
+		}else{
+			$.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/companylogin.php',
+				data: datastring,
+				cache: false,
+				success: function(result){
+					if(result == "Not exist"){
+						$("#infomsg").html("Email doesn't exist in database.");
+					}else if(result == "Incorrect Password"){
+						$("#infomsg").html("Incorrect Password. Please try again.");
+					}else{
+						window.location.href="http://localhost/jobster";
+					}
+				}
+			});
+		}
+		return false;
+	});
+});
 myApp.controller("companylogoutCtrl", function($scope, $http){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
 	$http.get("http://localhost/jobster/webservices/companylogout.php")
 	.then(function(response){
 		window.location.href="http://localhost/jobster/";
