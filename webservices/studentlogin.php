@@ -39,6 +39,8 @@
             session_start();
             $_SESSION['userid'] = $semail;
             $_SESSION['user'] = ucfirst($sfname);
+            unset($_SESSION["companyid"]);
+            unset($_SESSION["company"]);
         }
     }
 ?>

@@ -42,6 +42,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companyregister.php',
 		controller: 'companyregisterCtrl'
 	})
+	.when('/companylogout', {
+		templateUrl: 'templates/logout.php',
+		controller: 'companylogoutCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -52,6 +56,10 @@ myApp.controller("defaultCtrl", function($scope){
 });
 
 myApp.controller("registerCtrl", function($scope, $http, $window){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	$("#submit").click(function(){
 		var semail = $("#semail").val();
 		var spassword= $("#spassword").val();
@@ -102,6 +110,10 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 	});
 });
 myApp.controller("loginCtrl", function($scope, $http){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	$("#submit").click(function(){
 		var semail = $("#semail").val();
 		var spassword= $("#spassword").val();
@@ -138,6 +150,10 @@ myApp.controller("logoutCtrl", function($scope, $http){
 	})
 });
 myApp.controller("networkCtrl", function($scope, $http){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	$("#infomsg").html("Search for your friend");
 	$("#submit").click(function(){
 		var name = $("#name").val();
@@ -186,6 +202,10 @@ myApp.controller("networkCtrl", function($scope, $http){
 });
 
 myApp.controller("requestCtrl", function($scope, $http){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentrequests.php',
@@ -249,6 +269,10 @@ myApp.controller("requestCtrl", function($scope, $http){
 });
 
 myApp.controller("friendCtrl", function($scope, $http){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentshowfriend.php',
@@ -274,6 +298,10 @@ myApp.controller("friendCtrl", function($scope, $http){
 });
 
 myApp.controller("profileCtrl", function($scope){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	$("#edit").hide();
 	$("#noeditedit").show();
 	 $.ajax({
@@ -344,5 +372,56 @@ myApp.controller("companydefaultCtrl", function($scope){
 });
 
 myApp.controller("companyregisterCtrl", function($scope){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+	
+	$("#companyregistersubmit").click(function(){
+		var cemail = $("#cemail").val();
+		var cpassword= $("#cpassword").val();
+		var cname = $("#cname").val();
+		var chqcity = $("#chqcity").val();
+		var chqstate = $("#chqstate").val();
+		var cindustry = $("#cindustry").val();
+		var cintro = $("#cintro").val();
 
+		var datastring = new FormData();
+		datastring.append('cimage', $('input[type=file]')[0].files[0]);
+		datastring.append('cemail', cemail);
+		datastring.append('cpassword', cpassword);
+		datastring.append('cname', cname);
+		datastring.append('chqcity', chqcity);
+		datastring.append('chqstate', chqstate);
+		datastring.append('cindustry', cindustry);
+		datastring.append('cintro', cintro);
+		
+		if(cemail == "" || cpassword == "" || cname == "" || chqcity == "" || chqstate == "" || cindustry == ""){
+			$("#infomsg").html("Please fill out all details");
+		}else{
+			$.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/companyregister.php',
+				data: datastring,
+				cache: false,
+				processData: false,
+				contentType: false,
+				success: function(result){
+					$("#infomsg").html(result);
+					if(result == "Failed"){
+						$("#infomsg").html("Company exists in database. Please log in or use other email address.");
+					}else{
+						window.location.href="http://localhost/jobster/";
+					}
+				}
+			});
+		}
+		return false;
+	});
+});
+myApp.controller("companylogoutCtrl", function($scope, $http){
+	$http.get("http://localhost/jobster/webservices/companylogout.php")
+	.then(function(response){
+		window.location.href="http://localhost/jobster/";
+	})
 });

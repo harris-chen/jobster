@@ -4,6 +4,8 @@
   //$_SESSION['userid'] = "hao.chen@nyu.edu";
   //$_SESSION['user'] = "Yiju";
   //$_SESSION['userid'] = "yiju.lai@nyu.edu";
+  //$_SESSION['company'] = "Facebook";
+  //$_SESSION['companyid'] = "admin@facebook.com";
   //session_unset();
 ?>
 <!DOCTYPE html>
@@ -21,22 +23,20 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="#">Jobster</a>
+	  <a class="navbar-brand" style="color:white;">Jobster</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarColor01">
 	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home</a>
-	      </li>
+
 	      <?php
 			if(isset($_SESSION['user'])){
 		  ?>
-
-	      
-	      
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home</a>
+	      </li>      
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#/network">Networks</a>
 	      </li>	      
@@ -52,9 +52,15 @@
 	      <?php
 		  }else if(isset($_SESSION['company'])){
 		  ?>
+		  <li class="nav-item active">
+	        <a class="nav-link" href="#">Home</a>
+	      </li> 
 		  <?php
 		  }else{
 		  ?>
+		  <li class="nav-item active">
+	        <a class="nav-link" href="#">Home</a>
+	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#/employer">Employer/Post Jobs</a>
 	      </li>
@@ -71,7 +77,14 @@
 		      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Log out</button>
 	        </form>
 	    <?php 
-	    	}else{
+		}else if(isset($_SESSION['company'])){
+		?>
+	    	<a class="navbar-brand" href="#">Hi, <?php echo $_SESSION['company'] ?></a>
+	    	<form class="form-inline my-2 my-lg-0" action = "#/companylogout">
+		      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Log out</button>
+	        </form>			
+		<?php 
+		}else{
 	    ?>
 		  <form class="form-inline my-2 my-lg-0" action = "#/login" id="slogin">
 	      	<button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>

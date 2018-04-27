@@ -2,275 +2,249 @@
 	<br>
 	<form id="companyregisterform">
 	  <fieldset>
-	    <legend>Please fill out your information</legend>
+	    <legend>Please fill out basic information</legend>
 	    <div class="form-group">
-	      <label for="exampleInputEmail1">Email address*</label>
-	      <input ng-model="semail" name = "semail" class="form-control" id="semail" aria-describedby="emailHelp" placeholder="Enter email" type="email">
+	      <label for="exampleInputEmail1">Admin email address*</label>
+	      <input ng-model="cemail" name = "cemail" class="form-control" id="cemail" aria-describedby="emailHelp" placeholder="Enter email" type="email">
 	      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 	    </div>
 	    <div class="form-group">
 	      <label for="exampleInputPassword1">Password*</label>
-	      <input ng-model="spassword" name = "spassword" class="form-control" id="spassword" placeholder="Password 6-30 Characters" type="password">
+	      <input ng-model="cpassword" name = "cpassword" class="form-control" id="cpassword" placeholder="Password" type="password">
 	    </div>
 	    
 	   	<div class="form-group">
-	      <label>First Name*</label>
-	      <input id="sfname" ng-model="sfname" name = "sfname" class="form-control"  type="text">
+	      <label>Company Name*</label>
+	      <input id="cname" ng-model="cname" name = "cname" class="form-control"  type="text">
 	    </div>
 	    
 	   	<div class="form-group">
-	      <label>Last Name*</label>
-	      <input id="slname" ng-model="slname" name = "slname" class="form-control"  type="text">
+	      <label>HQ City*</label>
+	      <input id="chqcity" ng-model="chqcity" name = "chqcity" class="form-control"  type="text">
 	    </div>
 	    
 	    <div class="form-group">
-	      <label for="exampleSelect1">University*</label>
-	      <select ng-model="suniversity" name = "suniversity" class="form-control" id="suniversity">
-				<option>American University</option>
-				<option>Arizona State University</option>
-				<option>Boston College</option>
-				<option>Boston University</option>
-				<option>Brandeis University</option>
-				<option>Brown University</option>
-				<option>California Institute of Technology (Caltech)</option>
-				<option>Carnegie Mellon University</option>
-				<option>Case Western Reserve University</option>
-				<option>City University of New York</option>
-				<option>Clark University </option>
-				<option>Colorado State University</option>
-				<option>Columbia University</option>
-				<option>Cornell University</option>
-				<option>Dartmouth College </option>
-				<option>Drexel University</option>
-				<option>Duke University</option>
-				<option>Emory University</option>
-				<option>Florida State University</option>
-				<option>George Washington University</option>
-				<option>Georgetown University </option>
-				<option>Georgia Institute of Technology</option>
-				<option>Harvard University</option>
-				<option>Illinois Institute of Technology</option>
-				<option>Indiana University Bloomington</option>
-				<option>Iowa State University</option>
-				<option>Johns Hopkins University</option>
-				<option>Lehigh University</option>
-				<option>Massachusetts Institute of Technology (MIT)</option>
-				<option>Michigan State University</option>
-				<option>New York University</option>
-				<option>North Carolina State University</option>
-				<option>Northeastern University</option>
-				<option>Northwestern University</option>
-				<option>Oregon State University</option>
-				<option>Pennsylvania State University</option>
-				<option>Princeton University</option>
-				<option>Purdue University</option>
-				<option>Rensselaer Polytechnic University</option>
-				<option>Rice University</option>
-				<option>Rutgers University - New Brunswick</option>
-				<option>Stanford University</option>
-				<option>Stony Brook University, State University of New York</option>
-				<option>Syracuse University</option>
-				<option>Texas A&M University</option>
-				<option>The Katz School at Yeshiva University</option>
-				<option>The Ohio State University</option>
-				<option>The University of Arizona</option>
-				<option>The University of Georgia</option>
-				<option>The University of Tennessee, Knoxville</option>
-				<option>Tufts University</option>
-				<option>Tulane University</option>
-				<option>University at Buffalo SUNY</option>
-				<option>University of California, Berkeley (UCB)</option>
-				<option>University of California, Davis</option>
-				<option>University of California, Irvine</option>
-				<option>University of California, Los Angeles (UCLA)</option>
-				<option>University of California, Riverside</option>
-				<option>University of California, San Diego (UCSD)</option>
-				<option>University of California, Santa Barbara (UCSB)</option>
-				<option>University of California, Santa Cruz</option>
-				<option>University of Chicago</option>
-				<option>University of Cincinnati</option>
-				<option>University of Colorado Boulder</option>
-				<option>University of Colorado, Denver</option>
-				<option>University of Connecticut</option>
-				<option>University of Delaware</option>
-				<option>University of Florida</option>
-				<option>University of Illinois at Urbana-Champaign</option>
-				<option>University of Illinois, Chicago (UIC)</option>
-				<option>University of Iowa</option>
-				<option>University of Kansas</option>
-				<option>University of Maryland, Baltimore County</option>
-				<option>University of Maryland, College Park</option>
-				<option>University of Massachusetts Amherst</option>
-				<option>University of Miami</option>
-				<option>University of Michigan</option>
-				<option>University of Minnesota</option>
-				<option>University of Nebraska-Lincoln</option>
-				<option>University of New Mexico</option>
-				<option>University of North Carolina, Chapel Hill</option>
-				<option>University of Notre Dame</option>
-				<option>University of Oklahoma</option>
-				<option>University of Pennsylvania</option>
-				<option>University of Pittsburgh</option>
-				<option>University of Rochester</option>
-				<option>University of South Florida</option>
-				<option>University of Southern California</option>
-				<option>University of Texas at Austin</option>
-				<option>University of Texas Dallas </option>
-				<option>University of Utah</option>
-				<option>University of Virginia</option>
-				<option>University of Washington</option>
-				<option>University of Wisconsin-Madison</option>
-				<option>Vanderbilt University</option>
-				<option>Virginia Polytechnic Institute and State University</option>
-				<option>Wake Forest University</option>
-				<option>Washington State University</option>
-				<option>Washington University in St. Louis</option>
-				<option>Wayne State University</option>
-				<option>Yale University</option>
+	      <label for="exampleSelect1">HQ state*</label>
+	      <select ng-model="chqstate" name = "chqstate" class="form-control" id="chqstate">
+                <option>AK</option>
+                <option>AZ</option>
+                <option>AR</option>
+                <option>CA</option>
+                <option>CO</option>
+                <option>CT</option>
+                <option>DE</option>
+                <option>FL</option>
+                <option>GA</option>
+                <option>HI</option>
+                <option>ID</option>
+                <option>IL</option>
+                <option>IN</option>
+                <option>IA</option>
+                <option>KS</option>
+                <option>KY</option>
+                <option>LA</option>
+                <option>ME</option>
+                <option>MD</option>
+                <option>MA</option>
+                <option>MI</option>
+                <option>MN</option>
+                <option>MS</option>
+                <option>MO</option>
+                <option>MT</option>
+                <option>NE</option>
+                <option>NV</option>
+                <option>NH</option>
+                <option>NJ</option>
+                <option>NM</option>
+                <option>NY</option>
+                <option>NC</option>
+                <option>ND</option>
+                <option>OH</option>
+                <option>OK</option>
+                <option>OR</option>
+                <option>PA</option>
+                <option>RI</option>
+                <option>SC</option>
+                <option>SD</option>
+                <option>TN</option>
+                <option>TX</option>
+                <option>UT</option>
+                <option>VT</option>
+                <option>VA</option>
+                <option>WA</option>
+                <option>WV</option>
+                <option>WI</option>
+                <option>WY</option>
 	      </select>
 	    </div>
 	    
 	    <div class="form-group">
-	      <label for="exampleSelect1">Degree Level*</label>
-	      <select ng-model="sdegree" name = "sdegree" class="form-control" id="sdegree">
-	        <option>Bachelor of Science (BS)</option>
-	        <option>Bachelor of Arts (BA)</option>
-	        <option>Master of Science (MS)</option>
-	        <option>Master of Business Administration (MBA)</option>
-	        <option>Doctor of Philosophy (PhD)</option>
-	      </select>
-	    </div>
-	    
-	    <div class="form-group">
-	      <label for="exampleSelect1">Major*</label>
-	      <select ng-model="smajor" name = "smajor" class="form-control" id="smajor">
+	      <label for="exampleSelect1">Industry*</label>
+	      <select ng-model="cindustry" name = "cindustry" class="form-control" id="cindustry">
 			<option>Accounting</option>
-			<option>Actuarial Science</option>
-			<option>Advertising</option>
-			<option>Agriculture</option>
-			<option>Agricultural and Biological Engineering</option>
-			<option>Agricultural Business Management</option>
-			<option>Agriculture Economics</option>
-			<option>Animal Bioscience</option>
-			<option>Animal Sciences</option>
-			<option>Anthropology</option>
-			<option>Applied Mathematics</option>
-			<option>Archaeology</option>
-			<option>Architectural Engineering</option>
-			<option>Architecture</option>
-			<option>Art History</option>
-			<option>Studio Art</option>
-			<option>Art Education</option>
-			<option>Biobehavioral Health</option>
-			<option>Biochemistry</option>
-			<option>Bioengineering</option>
-			<option>Biology</option>
-			<option>Biophysics</option>
-			<option>Biotechnology</option>
-			<option>Business Administration and Management</option>
-			<option>Business Logistics</option>
-			<option>Chemical Engineering</option>
-			<option>Chemistry</option>
-			<option>Children</option>
-			<option>Civil Engineering</option>
-			<option>Computer Engineering</option>
-			<option>Computer Science</option>
-			<option>Crime, Law, and Justice</option>
-			<option>Dance</option>
-			<option>Earth Sciences</option>
-			<option>Economics</option>
-			<option>Electrical Engineering</option>
-			<option>Elementary and Kindergarten Education</option>
-			<option>Engineering Science</option>
-			<option>English</option>
-			<option>Environmental Systems Engineering</option>
-			<option>Environmental Sciences</option>
-			<option>Environmental Resource Management</option>
-			<option>Film and Video</option>
-			<option>Finance</option>
-			<option>Food Science</option>
-			<option>Forest Science</option>
-			<option>Forest Technology</option>
-			<option>General Science</option>
-			<option>Geography</option>
-			<option>Geosciences</option>
-			<option>Graphic Design and Photography</option>
-			<option>Health and Physical Education</option>
-			<option>Health Policy and Administration</option>
-			<option>History</option>
-			<option>Horticulture</option>
-			<option>Hotel, Restaurant, and Institutional Management</option>
-			<option>Human Development and Family Studies</option>
-			<option>Individual and Family Studies</option>
-			<option>Industrial Engineering</option>
-			<option>Information Sciences and Technology</option>
-			<option>Journalism</option>
-			<option>Kinesiology</option>
-			<option>Landscape Architecture</option>
-			<option>Law Enforcement and Correction</option>
-			<option>Marine Biology</option>
-			<option>Marketing</option>
-			<option>Mathematics</option>
-			<option>Mechanical Engineering</option>
-			<option>Media Studies</option>
-			<option>Meteorology</option>
-			<option>Microbiology</option>
-			<option>Mineral Economics</option>
-			<option>Modern Languages</option>
-			<option>Music Education</option>
-			<option>Nuclear Engineering</option>
-			<option>Nursing</option>
-			<option>Nutrition</option>
-			<option>Philosophy</option>
-			<option>Physics</option>
-			<option>Physiology</option>
-			<option>Political Science</option>
-			<option>Pre-medicine</option>
-			<option>Psychology</option>
-			<option>Public Relations</option>
-			<option>Real Estate</option>
-			<option>Recreation and Parks</option>
-			<option>Rehabilitation Services</option>
-			<option>Religious Studies</option>
-			<option>Secondary Education</option>
-			<option>Sociology</option>
-			<option>Social Work</option>
-			<option>Special Education</option>
-			<option>Speech Communication</option>
-			<option>Speech Pathology and Audiology/Communication Disorder</option>
-			<option>Statistics</option>
-			<option>Telecommunications</option>
-			<option>Theater</option>
-			<option>Wildlife and Fishery Science</option>
-			<option>Wildlife Technology</option>
-			<option>Women's Studies</option>
+            <option>Airlines/Aviation</option>
+            <option>Alternative Dispute Resolution</option>
+            <option>Alternative Medicine</option>
+            <option>Animation</option>
+            <option>Apparel/Fashion</option>
+            <option>Architecture/Planning</option>
+            <option>Arts/Crafts</option>
+            <option>Automotive</option>
+            <option>Aviation/Aerospace</option>
+            <option>Banking/Mortgage</option>
+            <option>Biotechnology/Greentech</option>
+            <option>Broadcast Media</option>
+            <option>Building Materials</option>
+            <option>Business Supplies/Equipment</option>
+            <option>Capital Markets/Hedge Fund/Private Equity</option>
+            <option>Chemicals</option>
+            <option>Civic/Social Organization</option>
+            <option>Civil Engineering</option>
+            <option>Commercial Real Estate</option>
+            <option>Computer Games</option>
+            <option>Computer Hardware</option>
+            <option>Computer Networking</option>
+            <option>Computer Software</option>
+            <option>Computer/Network Security</option>
+            <option>Construction</option>
+            <option>Consumer Electronics</option>
+            <option>Consumer Goods</option>
+            <option>Consumer Services</option>
+            <option>Cosmetics</option>
+            <option>Dairy</option>
+            <option>Defense/Space</option>
+            <option>Design</option>
+            <option>E-Learning</option>
+            <option>Education Management</option>
+            <option>Electrical/Electronic Manufacturing</option>
+            <option>Entertainment/Movie Production</option>
+            <option>Environmental Services</option>
+            <option>Events Services</option>
+            <option>Executive Office</option>
+            <option>Facilities Services</option>
+            <option>Farming</option>
+            <option>Financial Services</option>
+            <option>Fine Art</option>
+            <option>Fishery</option>
+            <option>Food Production</option>
+            <option>Food/Beverages</option>
+            <option>Fundraising</option>
+            <option>Furniture</option>
+            <option>Gambling/Casinos</option>
+            <option>Glass/Ceramics/Concrete</option>
+            <option>Government Administration</option>
+            <option>Government Relations</option>
+            <option>Graphic Design/Web Design</option>
+            <option>Health/Fitness</option>
+            <option>Higher Education/Acadamia</option>
+            <option>Hospital/Health Care</option>
+            <option>Hospitality</option>
+            <option>Human Resources/HR</option>
+            <option>Import/Export</option>
+            <option>Individual/Family Services</option>
+            <option>Industrial Automation</option>
+            <option>Information Services</option>
+            <option>Information Technology/IT</option>
+            <option>Insurance</option>
+            <option>International Affairs</option>
+            <option>International Trade/Development</option>
+            <option>Internet</option>
+            <option>Investment Banking/Venture</option>
+            <option>Investment Management/Hedge Fund/Private Equity</option>
+            <option>Judiciary</option>
+            <option>Law Enforcement</option>
+            <option>Law Practice/Law Firms</option>
+            <option>Legal Services</option>
+            <option>Legislative Office</option>
+            <option>Leisure/Travel</option>
+            <option>Library</option>
+            <option>Logistics/Procurement</option>
+            <option>Luxury Goods/Jewelry</option>
+            <option>Machinery</option>
+            <option>Management Consulting</option>
+            <option>Maritime</option>
+            <option>Market Research</option>
+            <option>Marketing/Advertising/Sales</option>
+            <option>Mechanical or Industrial Engineering</option>
+            <option>Media Production</option>
+            <option>Medical Equipment</option>
+            <option>Medical Practice</option>
+            <option>Mental Health Care</option>
+            <option>Military Industry</option>
+            <option>Mining/Metals</option>
+            <option>Motion Pictures/Film</option>
+            <option>Museums/Institutions</option>
+            <option>Music</option>
+            <option>Nanotechnology</option>
+            <option>Newspapers/Journalism</option>
+            <option>Non-Profit/Volunteering</option>
+            <option>Oil/Energy/Solar/Greentech</option>
+            <option>Online Publishing</option>
+            <option>Other Industry</option>
+            <option>Outsourcing/Offshoring</option>
+            <option>Package/Freight Delivery</option>
+            <option>Packaging/Containers</option>
+            <option>Paper/Forest Products</option>
+            <option>Performing Arts</option>
+            <option>Pharmaceuticals</option>
+            <option>Philanthropy</option>
+            <option>Photography</option>
+            <option>Plastics</option>
+            <option>Political Organization</option>
+            <option>Primary/Secondary Education</option>
+            <option>Printing</option>
+            <option>Professional Training</option>
+            <option>Program Development</option>
+            <option>Public Relations/PR</option>
+            <option>Public Safety</option>
+            <option>Publishing Industry</option>
+            <option>Railroad Manufacture</option>
+            <option>Ranching</option>
+            <option>Real Estate/Mortgage</option>
+            <option>Recreational Facilities/Services</option>
+            <option>Religious Institutions</option>
+            <option>Renewables/Environment</option>
+            <option>Research Industry</option>
+            <option>Restaurants</option>
+            <option>Retail Industry</option>
+            <option>Security/Investigations</option>
+            <option>Semiconductors</option>
+            <option>Shipbuilding</option>
+            <option>Sporting Goods</option>
+            <option>Sports</option>
+            <option>Staffing/Recruiting</option>
+            <option>Supermarkets</option>
+            <option>Telecommunications</option>
+            <option>Textiles</option>
+            <option>Think Tanks</option>
+            <option>Tobacco</option>
+            <option>Translation/Localization</option>
+            <option>Transportation</option>
+            <option>Utilities</option>
+            <option>Venture Capital/VC</option>
+            <option>Veterinary</option>
+            <option>Warehousing</option>
+            <option>Wholesale</option>
+            <option>Wine/Spirits</option>
+            <option>Wireless</option>
+            <option>Writing/Editing</option>
 	      </select>
 	    </div>
 	    
-	   	<div class="form-group">
-	      <label>GPA*</label>
-	      <input id="sgpa" ng-model="sgpa" name = "sgpa" class="form-control"  type="number" placeholder="Round to 2 decimal places" step="0.01" min="0" max="4">
-	    </div>	    
 	    
 		<div class="form-group">
-	      <label for="exampleTextarea">Introduce yourself</label>
-	      <textarea "ng-model="sintro"  name = "sintro" class="form-control" id="sintro" rows="3"></textarea>
+	      <label for="exampleTextarea">Introduction</label>
+	      <textarea "ng-model="cintro"  name = "cintro" class="form-control" id="cintro" rows="3"></textarea>
 	    </div>
-	    
-	    
-	    <div class="form-group">
-	      <label for="exampleInputFile">Resume</label>
-	      <input class="form-control-file" id="sresume" ng-model="sresume" name = "sresume" aria-describedby="fileHelp" type="file">
-	      <small id="fileHelp" class="form-text text-muted">Please select resume in txt file</small>
-	    </div>	 
+
 	    
 	    <div class="form-group">
-	      <label for="exampleInputFile">Profile Picture</label>
-	      <input class="form-control-file" id="simage" ng-model="simage" name = "simage" aria-describedby="fileHelp" type="file">
+	      <label for="exampleInputFile">Company logo</label>
+	      <input class="form-control-file" id="cimage" ng-model="cimage" name = "cimage" aria-describedby="fileHelp" type="file">
 	      <small id="fileHelp" class="form-text text-muted">Recommended size 300*300</small>
 	    </div>	   
 
-	    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+	    <button type="submit" id="companyregistersubmit" class="btn btn-primary">Submit</button>
 	    
 	    <font id="infomsg" color="red"></font>
 	    
