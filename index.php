@@ -55,6 +55,9 @@
 		  <li class="nav-item active">
 	        <a class="nav-link" href="#">Home</a>
 	      </li> 
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#/companyprofile">Profile</a>
+	      </li>
 		  <?php
 		  }else{
 		  ?>

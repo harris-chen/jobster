@@ -50,6 +50,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/logout.php',
 		controller: 'companylogoutCtrl'
 	})
+	.when('/companyprofile', {
+		templateUrl: 'templates/companyprofile.php',
+		controller: 'companyprofileCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -358,7 +362,6 @@ myApp.controller("profileCtrl", function($scope){
 						$("#infomsg").html("");
 						$("#edit").hide();
 						$("#noedit").show();
-						$("#noeditedit").show();
 						window.location.href="http://localhost/jobster";
 					}
 				});
@@ -462,4 +465,22 @@ myApp.controller("companylogoutCtrl", function($scope, $http){
 	.then(function(response){
 		window.location.href="http://localhost/jobster/";
 	})
+});
+myApp.controller("companyprofileCtrl", function($scope){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+	$("#companyedit").hide();
+	$("#companynoedit").show();	
+	
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/companyprofile.php',
+			cache: false,
+			success: function(result){
+				$scope.companyprofile = result;
+				$scope.$apply();
+			}
+	});
 });

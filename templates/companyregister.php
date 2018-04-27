@@ -241,7 +241,7 @@
 	    <div class="form-group">
 	      <label for="exampleInputFile">Company logo</label>
 	      <input class="form-control-file" id="cimage" ng-model="cimage" name = "cimage" aria-describedby="fileHelp" type="file">
-	      <small id="fileHelp" class="form-text text-muted">Recommended size 300*300</small>
+	      <small id="fileHelp" class="form-text text-muted">Recommended size 200*200</small>
 	    </div>	   
 
 	    <button type="submit" id="companyregistersubmit" class="btn btn-primary">Submit</button>
