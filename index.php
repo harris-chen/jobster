@@ -4,8 +4,8 @@
   //$_SESSION['userid'] = "hao.chen@nyu.edu";
   //$_SESSION['user'] = "Yiju";
   //$_SESSION['userid'] = "yiju.lai@nyu.edu";
-  //$_SESSION['company'] = "Facebook";
-  //$_SESSION['companyid'] = "admin@facebook.com";
+  $_SESSION['company'] = "Facebook";
+  $_SESSION['companyid'] = "admin@facebook.com";
   //session_unset();
 ?>
 <!DOCTYPE html>

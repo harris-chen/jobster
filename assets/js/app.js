@@ -483,4 +483,45 @@ myApp.controller("companyprofileCtrl", function($scope){
 				$scope.$apply();
 			}
 	});
+	 
+	 $scope.companyeditprofile = function(i) {
+		 $("#companynoedit").hide();
+		 $("#companyedit").show();
+		 $("#companyeditsubmit").click(function(){
+			var cpassword= $("#cpassword").val();
+			var cname = $("#cname").val();
+			var chqcity = $("#chqcity").val();
+			var chqstate = $("#chqstate").val();
+			var cindustry = $("#cindustry").val();
+			var cintro = $("#cintro").val();
+
+			var datastring = new FormData();
+			datastring.append('cimage', $('input[type=file]')[0].files[0]);
+			datastring.append('cpassword', cpassword);
+			datastring.append('cname', cname);
+			datastring.append('chqcity', chqcity);
+			datastring.append('chqstate', chqstate);
+			datastring.append('cindustry', cindustry);
+			datastring.append('cintro', cintro);
+			
+			if(cpassword == "" || cname == "" || chqcity == "" || chqstate == "" || cindustry == ""){
+				$("#infomsg").html("Please fill out all details");
+			}else{
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/companymodifyprofile.php',
+					data: datastring,
+					cache: false,
+					processData: false,
+					contentType: false,
+					success: function(result){
+						$("#infomsg").html("");
+						$("#companyedit").hide();
+						$("#companynoedit").show();
+						window.location.href="http://localhost/jobster";
+					}
+				});
+			}
+		 });
+	 };
 });
