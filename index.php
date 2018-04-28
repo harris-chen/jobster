@@ -56,6 +56,15 @@
 	        <a class="nav-link" href="#">Home</a>
 	      </li> 
 	      <li class="nav-item active">
+	        <a class="nav-link" href="#/companyjobs">Jobs</a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#/companypostjob">Post</a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#/companyapplications">Applications</a>
+	      </li>
+	      <li class="nav-item active">
 	        <a class="nav-link" href="#/companyprofile">Profile</a>
 	      </li>
 		  <?php

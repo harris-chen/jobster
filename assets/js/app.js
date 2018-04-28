@@ -54,6 +54,18 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companyprofile.php',
 		controller: 'companyprofileCtrl'
 	})
+	.when('/companypostjob', {
+		templateUrl: 'templates/companypostjob.php',
+		controller: 'companypostjobCtrl'
+	})
+	.when('/companyjobs', {
+		templateUrl: 'templates/companyjobs.php',
+		controller: 'companyjobsCtrl'
+	})
+	.when('/jobs/:jid', {
+		templateUrl: 'templates/companyviewjob.php',
+		controller: 'companyviewjobCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -68,7 +80,7 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 	$("#sregister").show();
 	$("#clogin").hide();
 	$("#cregister").hide();
-	$("#submit").click(function(){
+	$("#submit").unbind("click").click(function(){
 		var semail = $("#semail").val();
 		var spassword= $("#spassword").val();
 		var sfname = $("#sfname").val();
@@ -122,7 +134,7 @@ myApp.controller("loginCtrl", function($scope, $http){
 	$("#sregister").show();
 	$("#clogin").hide();
 	$("#cregister").hide();
-	$("#submit").click(function(){
+	$("#submit").unbind("click").click(function(){
 		var semail = $("#semail").val();
 		var spassword= $("#spassword").val();
 		var datastring = $("#loginform").serialize();
@@ -163,7 +175,7 @@ myApp.controller("networkCtrl", function($scope, $http){
 	$("#clogin").hide();
 	$("#cregister").hide();
 	$("#infomsg").html("Search for your friend");
-	$("#submit").click(function(){
+	$("#submit").unbind("click").click(function(){
 		var name = $("#name").val();
 		var datastring = $("#networkform").serialize();
 		$.ajax({
@@ -384,7 +396,7 @@ myApp.controller("companyregisterCtrl", function($scope){
 	$("#clogin").show();
 	$("#cregister").show();
 	
-	$("#companyregistersubmit").click(function(){
+	$("#companyregistersubmit").unbind("click").click(function(){
 		var cemail = $("#cemail").val();
 		var cpassword= $("#cpassword").val();
 		var cname = $("#cname").val();
@@ -431,7 +443,9 @@ myApp.controller("companyloginCtrl", function($scope, $http){
 	$("#sregister").hide();
 	$("#clogin").show();
 	$("#cregister").show();
-	$("#companylogin").click(function(){
+	$("#companylogin").unbind("click").click(function(){
+		var cemail = $("#cemail").val();
+		var cpassword= $("#cpassword").val();
 		var datastring = $("#companyloginform").serialize();
 		
 		if(cemail == "" || cpassword == "" ){
@@ -524,4 +538,71 @@ myApp.controller("companyprofileCtrl", function($scope){
 			}
 		 });
 	 };
+	 return false;
+});
+
+myApp.controller("companypostjobCtrl", function($scope){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+	$("#companypostjobsubmit").unbind("click").click(function(){
+		var datastring = $("#companypostform").serialize();
+		var jtitle = $("#jtitle").val();
+		
+		if(jtitle == ""){
+			$("#postinfomsg").html("Please fill out job title");
+		}else{
+			$.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/companypostjob.php',
+				data: datastring,
+				cache: false,
+				success: function(result){
+					window.location.href="http://localhost/jobster/#/companyjobs";
+				}
+			});
+		}
+	});
+	return false;
+});
+
+myApp.controller("companyjobsCtrl", function($scope){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/companyshowjobs.php',
+			cache: false,
+			success: function(result){
+				$("#jtitlejob").html("Title");
+				$("#jcityjob").html("City");
+				$("#jstatejob").html("State");
+				$("#jdatejob").html("Post Date");
+				$scope.joblength = result.info.length;
+				$scope.jobs = result;
+				$scope.$apply();
+			},
+	 		error: function(XMLHttpRequest, textStatus, errorThrown){
+	 			$scope.joblength = 0
+	 			$scope.jobs = "";
+				$scope.$apply();
+	 		}
+	});
+});
+
+myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
+	 var jid = $routeParams.jid;
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/companyviewjob.php',
+			cache: false,
+			data: {jid, jid},
+			success: function(result){
+				$scope.viewjob = result;
+				$scope.$apply();
+			}
+	});
 });

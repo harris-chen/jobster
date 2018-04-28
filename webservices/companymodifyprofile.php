@@ -18,7 +18,7 @@
     $query = "update company set cpassword='".$cpassword."', cname='".$cname."', cHQstate='".$chqstate."', cHQcity='".$chqcity."', cintro='".$cintro."', cindustry='".$cindustry."', cimage='".$cimage."' where cemail='".$cemail."'";
     $response = @mysqli_query($dbc, $query);
     
-    $_SESSION['userid'] = $semail;
-    $_SESSION['user'] = ucfirst($sfname);
+    $_SESSION['companyid'] = $cemail;
+    $_SESSION['company'] = ucfirst($cname);
     
 ?>
