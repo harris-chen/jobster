@@ -41,6 +41,9 @@
 	        <a class="nav-link" href="#/searchjobs">Jobs</a>
 	      </li>
 	      <li class="nav-item active">
+	        <a class="nav-link" href="#/feeds">Feeds</a>
+	      </li>
+	      <li class="nav-item active">
 	        <a class="nav-link" href="#/network">Networks</a>
 	      </li> 
 	      <li class="nav-item active">

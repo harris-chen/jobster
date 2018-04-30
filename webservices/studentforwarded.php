@@ -1,18 +1,20 @@
 <?php 
-    session_start();
     require_once('connect.php');
-    $query = "select * from apply natural join job natural join company where semail = '".$_SESSION['userid']."' order by adate desc";
+    session_start();
+    $query = "select * from (forward natural join job natural join company),student where forward.to = '".$_SESSION['userid']."' and semail = forward.from";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
+            $sfname = ucfirst($row['sfname']);
+            $slname = ucfirst($row['slname']);
             $cname = $row['cname'];
-            $adate = $row['adate'];
             $jid = $row['jid'];
             $jtitle = $row['jtitle'];
             $jcity = ucfirst($row['jcity']);
             $jstate = $row['jstate'];
             $jdate = $row['jdate'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'cname'=>$cname, 'adate'=>$adate);
+            $fintro = $row['fintro'];
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'cname'=>$cname, 'fintro'=>$fintro, 'sfname'=>$sfname, 'slname'=>$slname);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{
@@ -21,5 +23,4 @@
     @mysqli_close();
     header('Content-type: application/json');
     echo json_encode($json);
-
 ?>

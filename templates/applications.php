@@ -15,7 +15,7 @@
 
 <div ng-controller="applicationCtrl" >
 	<br>
-	<legend>There are {{applicationlength}} you've applied</legend>
+	<legend>There are {{applicationlength}} jobs you've applied</legend>
 		<form >
 	<table class="table table-hover">
 	  <thead>

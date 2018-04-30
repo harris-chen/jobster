@@ -86,6 +86,22 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/applications.php',
 		controller: 'applicationCtrl'
 	})
+	.when('/students/:semail', {
+		templateUrl: 'templates/student.php',
+		controller: 'studentCtrl'
+	})
+	.when('/feeds', {
+		templateUrl: 'templates/feeds.php',
+		controller: 'feedsCtrl'
+	})
+	.when('/forwarded', {
+		templateUrl: 'templates/forwarded.php',
+		controller: 'forwardedCtrl'
+	})
+	.when('/notification', {
+		templateUrl: 'templates/notification.php',
+		controller: 'notificationCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -318,8 +334,7 @@ myApp.controller("friendCtrl", function($scope, $http){
 			url: 'http://localhost/jobster/webservices/studentshowfriend.php',
 			cache: false,
 			success: function(result){
-				$("#fnfriend").html("First Name");
-				$("#lnfriend").html("Last Name");
+				$("#fnfriend").html("Name");
 				$("#emfriend").html("Email");
 				$("#uvfriend").html("University");
 				$("#dgfriend").html("Degree");
@@ -621,6 +636,7 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 	$("#cregister").show();
 	$("#viewjobnoedit").show();
 	$("#viewjobedit").hide();
+	$("#forwardpage").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/companyviewjob.php',
@@ -633,6 +649,7 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 	});
 	 $scope.editjob = function(i) {
 			$("#viewjobnoedit").hide();
+			$("#forwardpage").hide();
 			$("#viewjobedit").show();
 			$("#companymodifyjobsubmit").unbind("click").click(function(){
 				var datastring = $("#companyeditjobform").serialize();
@@ -667,28 +684,55 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 	    }
 	 }
 	 $scope.applyjob = function(i) {
-	   	 /*$.ajax({
+	   	 $.ajax({
 				type: 'POST',
-				url: 'http://localhost/jobster/webservices/companydeletejob.php',
+				url: 'http://localhost/jobster/webservices/studentapply.php',
 				cache: false,
 				data: {jid, jid},
 				success: function(result){
-					window.location.href="http://localhost/jobster/#/companyjobs";
+					window.alert("Success! You have applied to "+ $scope.viewjob.info[0].jtitle + " at " + $scope.viewjob.info[0].cname);
 				}
-		});	        */
-		 window.alert("APPLIED");
+		});
     } 
 	 $scope.forwardjob = function(i) {
-	   	 /*$.ajax({
+		 $("#viewjobnoedit").hide();
+		 $("#viewjobedit").hide();
+		 $("#forwardpage").show();
+		 $.ajax({
 				type: 'POST',
-				url: 'http://localhost/jobster/webservices/companydeletejob.php',
+				url: 'http://localhost/jobster/webservices/studentshowfriend.php',
 				cache: false,
-				data: {jid, jid},
 				success: function(result){
-					window.location.href="http://localhost/jobster/#/companyjobs";
-				}
-		});	        */
-		 window.alert("FORWRD");
+					$("#fnfriend").html("Name");
+					$("#emfriend").html("Email");
+					$("#uvfriend").html("University");
+					$("#dgfriend").html("Degree");
+					$("#mgfriend").html("Major");
+					$scope.friendlength = result.info.length;
+					$scope.friends = result;
+					$scope.$apply();
+					
+					$scope.sendforward = function(i) {
+						var semail = $scope.friends.info[i].semail;
+						var fintro = prompt("Send a message to your friend");
+					   	 $.ajax({
+								type: 'POST',
+								url: 'http://localhost/jobster/webservices/studentforward.php',
+								cache: false,
+								data: {semail: semail, fintro: fintro, jid: jid},
+								success: function(result){
+									window.alert("Success! You have forward this job to " + $scope.friends.info[i].sfname);
+								}
+						});
+					}
+					
+				},
+		 		error: function(XMLHttpRequest, textStatus, errorThrown){
+		 			$scope.friendlength = 0
+		 			$scope.friends = "";
+					$scope.$apply();
+		 		}
+		});
     } 
 });
 myApp.controller("jobsCtrl", function($scope){
@@ -896,4 +940,52 @@ myApp.controller("applicationCtrl", function($scope){
 				$scope.$apply();
 			}
 	});
+});
+myApp.controller("studentCtrl", function($scope, $http, $routeParams){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
+	 var semail = $routeParams.semail;
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentviewprofile.php',
+			cache: false,
+			data: {semail, semail},
+			success: function(result){
+				$scope.profile = result;
+				$scope.$apply();
+			}
+	});
+});
+myApp.controller("feedsCtrl", function($scope, $http, $routeParams){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentjobifollow.php',
+			cache: false,
+			success: function(result){
+				$("#cnamejob").html("Company Name");
+				$("#jtitlejob").html("Title");
+				$("#jcityjob").html("City");
+				$("#jstatejob").html("State");
+				$("#jdatejob").html("Post Date");				
+				$scope.jobsIfollow = result;
+				$scope.$apply();
+			}
+	});
+});
+myApp.controller("forwardedCtrl", function($scope, $http, $routeParams){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentforwarded.php',
+			cache: false,
+			success: function(result){
+				$("#sname").html("From");
+				$("#cnamejob").html("Company Name");
+				$("#jtitlejob").html("Title");		
+				$("#fintro").html("Message from your friend");
+				$scope.forwarded = result;
+				$scope.$apply();
+			}
+	});	
 });

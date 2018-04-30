@@ -1,7 +1,7 @@
 <?php 
     require_once('connect.php');
     session_start();
-    $query = "select distinct * from student natural join ((select semail1 as semail from friendrequests where semail2 = '" . $_SESSION['userid'] . "' and status = 'approved') union all (select semail2 as semail from friendrequests where semail1 = '" . $_SESSION['userid'] . "' and status = 'approved')) as A";
+    $query = "select * from student where semail = '" . $_POST['semail'] . "'";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
@@ -11,7 +11,9 @@
             $suniversity = $row['suniversity'];
             $sdegree = $row['sdegree'];
             $smajor = $row['smajor'];
-            $result[] = array('semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'suniversity'=>$suniversity, 'sdegree'=>$sdegree, 'smajor'=>$smajor);
+            $sintro = $row['sintro'];
+            $simage = $row['simage'];
+            $result[] = array('semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'suniversity'=>$suniversity, 'sdegree'=>$sdegree, 'smajor'=>$smajor, 'sintro'=>$sintro, 'simage'=>$simage);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

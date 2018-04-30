@@ -213,7 +213,7 @@
 	    
 		<div class="form-group">
 	      <label for="exampleTextarea">Job Description Contains</label>
-	      <input id="jdescription" ng-model="jdescription" name = "jdescription" class="form-control"  type="text" placeholder="eg: Java">
+	      <input id="jdescription" ng-model="jdescription" name = "jdescription" class="form-control"  type="text" placeholder="ex: Java">
 	    </div>
 
 
@@ -229,7 +229,7 @@
 	<div id="jobsearchresult">
 	
 	<br>
-	<legend>There are {{alljoblength}} jobs posted <button type="submit" ng-click="gobacktosearch()" class="btn btn-primary">Go back</button></legend>
+	<legend>There are {{alljoblength}} jobs matching your result <button type="submit" ng-click="gobacktosearch()" class="btn btn-primary">Go back</button></legend>
 		<form >
 	<table class="table table-hover">
 	  <thead>

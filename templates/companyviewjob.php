@@ -281,6 +281,38 @@
 	
 
 	</div>
+	
+	
+	<div id="forwardpage">
+	<legend>{{viewjob.info[0].jtitle}}, {{viewjob.info[0].cname}}</legend>
+		<legend >Send a message and forward this job to your friend</legend>
+	
+
+	<table class="table table-hover">
+	  <thead>
+	  
+	    <tr>
+	      <th id="fnfriend" scope="col"></th>
+	      <th id="emfriend" scope="col"></th>
+	      <th id="uvfriend" scope="col"></th>
+	      <th id="dgfriend" scope="col"></th>
+	      <th id="mgfriend" scope="col"></th>
+	      <th id="acfriend" scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="r in friends.info">
+	      <td>{{r.sfname}} {{r.slname}}</td>
+	      <td>{{r.semail}}</td>
+	      <td>{{r.suniversity}}</td>
+	      <td>{{r.sdegree}}</td>
+	      <td>{{r.smajor}}</td>
+	      <td><button type="submit" ng-click="sendforward($index)" class="btn btn-primary">Send a message!</button></td>
+	    </tr>
+	  </tbody>
+	</table> 
+	</div>
+	
 </div>
 
 <style>
