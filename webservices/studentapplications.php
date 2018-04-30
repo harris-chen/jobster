@@ -1,22 +1,18 @@
 <?php 
+    session_start();
     require_once('connect.php');
-    $jid = $_POST['jid'];
-    $query = "select * from job natural join company where jid=".$jid."";
+    $query = "select * from apply natural join job natural join company where semail = '".$_SESSION['userid']."'";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
             $cname = $row['cname'];
+            $adate = $row['adate'];
             $jid = $row['jid'];
             $jtitle = $row['jtitle'];
             $jcity = ucfirst($row['jcity']);
             $jstate = $row['jstate'];
             $jdate = $row['jdate'];
-            $jdescription = $row['jdescription'];
-            $jdegree =$row['jdegree'];
-            $jmajor = $row['jmajor'];
-            $jsalary = $row['jsalary'];
-            $jdate = $row['jdate'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'jdescription'=>$jdescription, 'jdegree'=>$jdegree, 'jmajor'=>$jmajor, 'jsalary'=>$jsalary, 'jdate'=>$jdate, 'cname'=>$cname);
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'cname'=>$cname, 'adate'=>$adate);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{
@@ -25,4 +21,5 @@
     @mysqli_close();
     header('Content-type: application/json');
     echo json_encode($json);
+
 ?>

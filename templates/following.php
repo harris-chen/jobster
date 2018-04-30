@@ -9,7 +9,7 @@
     <a class="nav-link active" data-toggle="tab" href="#/following">Following</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#">My Applications</a>
+    <a class="nav-link" data-toggle="tab" href="#/applications">My Applications</a>
   </li>
 </ul>
 

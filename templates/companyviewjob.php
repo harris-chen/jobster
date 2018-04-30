@@ -1,14 +1,43 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['userid'])){?>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#/searchjobs" >Search Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#/companylist">Company List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#/following">Following</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#/applications">My Applications</a>
+      </li>
+    </ul>
+    <br>
+	<?php 
+    }
+?>
 <div ng-controller="companyviewjobCtrl">
-	<br><br>
 	
 	<div style="margin:0 auto; " id="viewjobnoedit">
           <table style="font-size: 120%; width:100%; " >
           <tr>
-            <th>Title:</th>
-            <td>{{viewjob.info[0].jtitle}}&nbsp;&nbsp;
+            <th>Company:</th>
+            <td>{{viewjob.info[0].cname}}&nbsp;&nbsp;
+             <?php if(isset($_SESSION['company'])){ ?>
              <button type="submit" ng-click="editjob()" class="btn btn-primary">Edit</button>
-             <button type="submit" ng-click="deletejob()" class="btn btn-secondary">Delete</button>
+             <button type="submit" ng-click="deletejob()" class="btn btn-secondary">Delete</button> 
+             <?php }else if(isset($_SESSION['userid'])){?>
+             <button type="submit" ng-click="applyjob()" class="btn btn-primary">Apply</button> 
+             <button type="submit" ng-click="forwardjob()" class="btn btn-info">Forward</button> 
+             <?php }?>
              </td>
+          </tr>
+          <tr>
+            <th>Title:</th>
+            <td>{{viewjob.info[0].jtitle}}</td>
           </tr>
           <tr>
             <th>Location:</th>

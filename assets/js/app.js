@@ -82,6 +82,10 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/following.php',
 		controller: 'followingCtrl'
 	})
+	.when('/applications', {
+		templateUrl: 'templates/applications.php',
+		controller: 'applicationCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -662,9 +666,68 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 			});	        
 	    }
 	 }
+	 $scope.applyjob = function(i) {
+	   	 /*$.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/companydeletejob.php',
+				cache: false,
+				data: {jid, jid},
+				success: function(result){
+					window.location.href="http://localhost/jobster/#/companyjobs";
+				}
+		});	        */
+		 window.alert("APPLIED");
+    } 
+	 $scope.forwardjob = function(i) {
+	   	 /*$.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/companydeletejob.php',
+				cache: false,
+				data: {jid, jid},
+				success: function(result){
+					window.location.href="http://localhost/jobster/#/companyjobs";
+				}
+		});	        */
+		 window.alert("FORWRD");
+    } 
 });
 myApp.controller("jobsCtrl", function($scope){
-	
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
+	$("#jobsearch").show();
+	$("#jobsearchresult").hide();
+	$("#jobsearchsubmit").unbind("click").click(function(){
+		$("#jobsearch").hide();
+		$("#jobsearchresult").show();
+		var datastring = $("#jobsearchform").serialize();
+		 $.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/studentsearchjob.php',
+				cache: false,
+				data: datastring,
+				success: function(result){
+					$("#cnamejob").html("Company Name");
+					$("#jtitlejob").html("Title");
+					$("#jcityjob").html("City");
+					$("#jstatejob").html("State");
+					$("#jdatejob").html("Post Date");
+					$scope.alljoblength = result.info.length;
+					$scope.alljobs = result;
+					$scope.$apply();
+				},
+		 		error: function(XMLHttpRequest, textStatus, errorThrown){
+		 			$scope.alljoblength = 0
+		 			$scope.alljobs = "";
+					$scope.$apply();
+		 		}
+		});
+	});
+	$scope.gobacktosearch = function(i) {
+		$("#jobsearch").show();
+		$("#jobsearchresult").hide();	
+	}
 });
 myApp.controller("companylistCtrl", function($scope){
 	$("#slogin").show();
@@ -729,6 +792,26 @@ myApp.controller("companyviewCtrl", function($scope, $http, $routeParams){
 			success: function(result){
 				$scope.companyview = result;
 				$scope.$apply();
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/companyjobindividual.php',
+					cache: false,
+					data: {cid, cid},
+					success: function(result){
+						$("#jtitlejob").html("Title");
+						$("#jcityjob").html("City");
+						$("#jstatejob").html("State");
+						$("#jdatejob").html("Post Date");
+						$scope.jobs = result;
+						$scope.joblength = result.info.length;
+						$scope.$apply();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown){
+						$scope.jobs = "";
+						$scope.joblength = 0;
+						$scope.$apply();
+			 		}					
+				});
 			}
 	});
 });
@@ -789,4 +872,28 @@ myApp.controller("followingCtrl", function($scope){
 			});
 		 }
 	 };
+});
+myApp.controller("applicationCtrl", function($scope){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();	
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentapplications.php',
+			cache: false,
+			success: function(result){
+				$("#cnamejob").html("Company Name");
+				$("#jtitlejob").html("Title");
+				$("#adatejob").html("Applied Date");
+				$scope.applicationlength = result.info.length;
+				$scope.applications = result;
+				$scope.$apply();
+			},
+		 	error: function(XMLHttpRequest, textStatus, errorThrown){
+		 		$scope.applicationlength = 0
+		 		$scope.applications = "";
+				$scope.$apply();
+			}
+	});
 });
