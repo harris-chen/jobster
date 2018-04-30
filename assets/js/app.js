@@ -66,6 +66,14 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companyviewjob.php',
 		controller: 'companyviewjobCtrl'
 	})
+	.when('/searchjobs', {
+		templateUrl: 'templates/jobs.php',
+		controller: 'jobsCtrl'
+	})
+	.when('/companylist', {
+		templateUrl: 'templates/companylist.php',
+		controller: 'companylistCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -595,6 +603,12 @@ myApp.controller("companyjobsCtrl", function($scope){
 
 myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 	 var jid = $routeParams.jid;
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
+	$("#viewjobnoedit").show();
+	$("#viewjobedit").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/companyviewjob.php',
@@ -605,4 +619,58 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 				$scope.$apply();
 			}
 	});
+	 $scope.editjob = function(i) {
+			$("#viewjobnoedit").hide();
+			$("#viewjobedit").show();
+			$("#companymodifyjobsubmit").unbind("click").click(function(){
+				var datastring = $("#companyeditjobform").serialize();
+				var jtitle = $("#jtitle").val();
+				
+				if(jtitle == ""){
+					$("#editjobinfomsg").html("Please fill out job title");
+				}else{
+					$.ajax({
+						type: 'POST',
+						url: 'http://localhost/jobster/webservices/companyeditjob.php',
+						data: datastring,
+						cache: false,
+						success: function(result){
+							window.location.href="http://localhost/jobster/#/companyjobs";
+						}
+					});
+				}
+			});
+	 }
+	 $scope.deletejob = function(i) {
+	    if (confirm("Are you sure to delete this job post")) {
+		   	 $.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/companydeletejob.php',
+					cache: false,
+					data: {jid, jid},
+					success: function(result){
+						window.location.href="http://localhost/jobster/#/companyjobs";
+					}
+			});	        
+	    }
+	 }
+});
+myApp.controller("jobsCtrl", function($scope){
+	
+});
+myApp.controller("companylistCtrl", function($scope){
+  	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/companylist.php',
+			cache: false,
+			success: function(result){
+				$("#cnamecompany").html("Name");
+				$("#chqcitycompany").html("HQ City");
+				$("#chqstatecompany").html("HQ State");
+				$("#cindustrycompany").html("Industry");
+				$scope.companylistlength = result.info.length;
+				$scope.companylist = result;
+				$scope.$apply();
+			}
+	});	     	
 });

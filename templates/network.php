@@ -1,3 +1,15 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab">Search</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#friends">My Friends</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#requests">Friend Requests</a>
+  </li>
+</ul>
+
 <div ng-controller="networkCtrl">
 	<br>
 	<form id="networkform">

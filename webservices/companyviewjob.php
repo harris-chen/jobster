@@ -14,7 +14,8 @@
             $jdegree =$row['jdegree'];
             $jmajor = $row['jmajor'];
             $jsalary = $row['jsalary'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'jdescription'=>$jdescription, 'jdegree'=>$jdegree, 'jmajor'=>$jmajor, 'jsalary'=>$jsalary);
+            $jdate = $row['jdate'];
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'jdescription'=>$jdescription, 'jdegree'=>$jdegree, 'jmajor'=>$jmajor, 'jsalary'=>$jsalary, 'jdate'=>$jdate);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

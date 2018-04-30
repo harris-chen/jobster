@@ -12,7 +12,7 @@
     $cid = reset($a);
     
     
-    $query = "select * from job where cid = ".$cid."";
+    $query = "select * from job where cid = ".$cid." order by jtitle";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){

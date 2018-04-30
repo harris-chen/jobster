@@ -1,3 +1,15 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab"  href="#network">Search</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" >My Friends</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#requests">Friend Requests</a>
+  </li>
+</ul>
+
 <div ng-controller="friendCtrl">
 	<br>
 	<legend >You have {{friendlength}} friends</legend>

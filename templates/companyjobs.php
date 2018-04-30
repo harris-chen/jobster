@@ -19,7 +19,7 @@
 	      <td>{{r.jcity}}</td>
 	      <td>{{r.jstate}}</td>
 	      <td>{{r.jdate}}</td>
-	      <td><a ng-href="#/jobs/{{r.jid}}" class="btn btn-primary">View Detail</an></td>
+	      <td><a ng-href="#/jobs/{{r.jid}}" class="btn btn-primary">View Detail</a></td>
 	    </tr>
 	  </tbody>
 	</table> 

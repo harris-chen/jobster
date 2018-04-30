@@ -4,8 +4,8 @@
   //$_SESSION['userid'] = "hao.chen@nyu.edu";
   //$_SESSION['user'] = "Yiju";
   //$_SESSION['userid'] = "yiju.lai@nyu.edu";
-  $_SESSION['company'] = "Facebook";
-  $_SESSION['companyid'] = "admin@facebook.com";
+  //$_SESSION['company'] = "Facebook";
+  //$_SESSION['companyid'] = "admin@facebook.com";
   //session_unset();
 ?>
 <!DOCTYPE html>
@@ -36,16 +36,13 @@
 		  ?>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#">Home</a>
-	      </li>      
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#/searchjobs">Jobs</a>
+	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#/network">Networks</a>
-	      </li>	      
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#/friends">Friends</a>
-	      </li>
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#/requests">Requests</a>
-	      </li>
+	      </li> 
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#/profile">Profile</a>
 	      </li>
