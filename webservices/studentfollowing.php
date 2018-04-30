@@ -1,6 +1,7 @@
 <?php 
     require_once('connect.php');
-    $query = "select * from company order by cname";
+    session_start();
+    $query = "select * from follow natural join company where semail = '".$_SESSION['userid']."' order by cname";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){

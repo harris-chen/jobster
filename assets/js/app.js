@@ -74,6 +74,14 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companylist.php',
 		controller: 'companylistCtrl'
 	})
+	.when('/companies/:cid', {
+		templateUrl: 'templates/companyview.php',
+		controller: 'companyviewCtrl'
+	})
+	.when('/following', {
+		templateUrl: 'templates/following.php',
+		controller: 'followingCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -659,6 +667,10 @@ myApp.controller("jobsCtrl", function($scope){
 	
 });
 myApp.controller("companylistCtrl", function($scope){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
   	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/companylist.php',
@@ -672,5 +684,109 @@ myApp.controller("companylistCtrl", function($scope){
 				$scope.companylist = result;
 				$scope.$apply();
 			}
-	});	     	
+	});
+	 $scope.follow = function(i) {
+		 var cid = $scope.companylist.info[i].cid;
+	  	 $.ajax({
+				type: 'POST',
+				url: 'http://localhost/jobster/webservices/studentfollow.php',
+				cache: false,
+				data: {cid, cid},
+				success: function(result){
+					window.alert("Success! You are now following " + $scope.companylist.info[i].cname)
+					$scope.$apply();
+				}
+		});		 
+	 };
+	 $scope.unfollow = function(i) {
+		 if (confirm("Are you sure to unfollow " + $scope.companylist.info[i].cname)) {
+			 var cid = $scope.companylist.info[i].cid;
+		  	 $.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/studentunfollow.php',
+					cache: false,
+					data: {cid, cid},
+					success: function(result){
+						window.alert("Success! You have unfollowed " + $scope.companylist.info[i].cname)
+						$scope.$apply();
+					}
+			});
+		 }
+	 };
+});
+
+myApp.controller("companyviewCtrl", function($scope, $http, $routeParams){
+ 	var cid = $routeParams.cid;
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/companyview.php',
+			cache: false,
+			data: {cid, cid},
+			success: function(result){
+				$scope.companyview = result;
+				$scope.$apply();
+			}
+	});
+});
+myApp.controller("followingCtrl", function($scope){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();	
+ 	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentfollowing.php',
+			cache: false,
+			success: function(result){
+				$("#cnamecompany").html("Name");
+				$("#chqcitycompany").html("HQ City");
+				$("#chqstatecompany").html("HQ State");
+				$("#cindustrycompany").html("Industry");
+				$scope.followinglength = result.info.length;
+				$scope.following = result;
+				$scope.$apply();
+			},
+		 	error: function(XMLHttpRequest, textStatus, errorThrown){
+		 		$scope.followinglength = 0
+		 		$scope.following = "";
+				$scope.$apply();
+			}
+	});
+	 $scope.unfollow = function(i) {
+		 if (confirm("Are you sure to unfollow " + $scope.following.info[i].cname)) {
+			 var cid = $scope.following.info[i].cid;
+		  	 $.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/studentunfollow.php',
+					cache: false,
+					data: {cid, cid},
+					success: function(result){
+						window.alert("Success! You have unfollowed " + $scope.following.info[i].cname)
+					 	 $.ajax({
+								type: 'POST',
+								url: 'http://localhost/jobster/webservices/studentfollowing.php',
+								cache: false,
+								success: function(result){
+									$("#cnamecompany").html("Name");
+									$("#chqcitycompany").html("HQ City");
+									$("#chqstatecompany").html("HQ State");
+									$("#cindustrycompany").html("Industry");
+									$scope.followinglength = result.info.length;
+									$scope.following = result;
+									$scope.$apply();
+								},
+							 	error: function(XMLHttpRequest, textStatus, errorThrown){
+							 		$scope.followinglength = 0
+							 		$scope.following = "";
+									$scope.$apply();
+								}
+						});
+					}
+			});
+		 }
+	 };
 });

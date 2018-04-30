@@ -1,15 +1,17 @@
 <?php 
     require_once('connect.php');
-    $query = "select * from company order by cname";
+    $query = "select * from company where cid = '" . $_POST['cid'] . "'";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
-            $cname = $row['cname'];
+            $cemail = $row['cemail'];
+            $cname = ucfirst($row['cname']);
             $chqstate = $row['cHQstate'];
-            $chqcity = ucfirst($row['cHQcity']);
+            $chqcity = $row['cHQcity'];
             $cindustry = $row['cindustry'];
-            $cid = $row['cid'];
-            $result[] = array('cname'=>$cname,'chqstate'=>$chqstate, 'chqcity'=>$chqcity, 'cindustry'=>$cindustry, 'cid'=>$cid);
+            $cintro = $row['cintro'];
+            $cimage = $row['cimage'];
+            $result[] = array('cemail'=>$cemail, 'cname'=>$cname, 'chqstate'=>$chqstate, 'chqcity'=>$chqcity, 'cindustry'=>$cindustry,'cintro'=>$cintro, 'cimage'=>$cimage);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{
