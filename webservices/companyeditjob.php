@@ -9,7 +9,11 @@
     }else{
         $jstate = $_POST['jstate'];
     }
-    $jsalary = $_POST['jsalary'];
+    if($_POST['jsalary']==""){
+        $jsalary =0;
+    }else{
+        $jsalary = $_POST['jsalary'];
+    }
     if($_POST['jmajor'] == "? undefined:undefined ?"){
         $jmajor = "";
     }else{
@@ -24,6 +28,6 @@
     
    
     
-    $query = "update job set jtitle='".$jtitle."', jcity='".$jcity."', jstate='".$jstate."', jsalary=".$jsalary.", jmajor='".$jmajor."', jdegree='".$jdegree."',jdescription='".$jdescription."', jdate=NOW() where jid=5";
+    $query = "update job set jtitle='".$jtitle."', jcity='".$jcity."', jstate='".$jstate."', jsalary=".$jsalary.", jmajor='".$jmajor."', jdegree='".$jdegree."',jdescription='".$jdescription."', jdate=NOW() where jid=".$jid."";
     $response = @mysqli_query($dbc, $query);
  ?>

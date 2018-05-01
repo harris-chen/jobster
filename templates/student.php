@@ -34,6 +34,13 @@
     	<hr class="my-4">
     	<p>{{profile.info[0].sintro}}</p>
     	<br>
+    	
+    	<?php if(isset($_SESSION['companyid'])){?>
+    	<form action = "http://localhost/jobster/webservices/studentresumedownload.php" method="post">
+    	<input id="semail" ng-model="semail" name = "semail" type="hidden" value="{{profile.info[0].semail}}">
+    	<button type="submit" class="btn btn-primary">Download Resume</button>
+    	</form>
+    	<?php }?>
     </div>
 </div>
 

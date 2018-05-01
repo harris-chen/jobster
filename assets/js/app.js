@@ -98,9 +98,13 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/forwarded.php',
 		controller: 'forwardedCtrl'
 	})
-	.when('/notification', {
-		templateUrl: 'templates/notification.php',
-		controller: 'notificationCtrl'
+	.when('/notifications', {
+		templateUrl: 'templates/notifications.php',
+		controller: 'notificationsCtrl'
+	})
+	.when('/companyapplications', {
+		templateUrl: 'templates/companyapplications.php',
+		controller: 'companyapplicationsCtrl'
 	})
 });
 
@@ -637,6 +641,7 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 	$("#viewjobnoedit").show();
 	$("#viewjobedit").hide();
 	$("#forwardpage").hide();
+	$("#pushnotification").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/companyviewjob.php',
@@ -661,7 +666,7 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 					$.ajax({
 						type: 'POST',
 						url: 'http://localhost/jobster/webservices/companyeditjob.php',
-						data: datastring,
+						data: datastring +'&jid=' + jid,
 						cache: false,
 						success: function(result){
 							window.location.href="http://localhost/jobster/#/companyjobs";
@@ -734,6 +739,24 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 		 		}
 		});
     } 
+	 $scope.notification = function(i) {
+			$("#viewjobnoedit").hide();
+			$("#viewjobedit").hide();
+			$("#forwardpage").hide();
+			$("#pushnotification").show();
+			$("#pushnotificationsubmit").unbind("click").click(function(){
+				var datastring = $("#notificationform").serialize();
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/companypushnotification.php',
+					data: datastring +'&jid=' + jid,
+					cache: false,
+					success: function(result){
+						window.alert("Success");
+					}
+				});				
+			});
+	 }
 });
 myApp.controller("jobsCtrl", function($scope){
 	$("#slogin").show();
@@ -989,3 +1012,42 @@ myApp.controller("forwardedCtrl", function($scope, $http, $routeParams){
 			}
 	});	
 });
+myApp.controller("notificationsCtrl", function($scope, $http, $routeParams){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentnotifications.php',
+			cache: false,
+			success: function(result){
+				$("#cnamejob").html("Company Name");
+				$("#jtitlejob").html("Title");
+				$("#jcityjob").html("City");
+				$("#jstatejob").html("State");
+				$("#jdatejob").html("Post Date");				
+				$scope.notifications = result;
+				$scope.$apply();
+			}
+	});
+});
+
+myApp.controller("companyapplicationsCtrl", function($scope, $http, $routeParams){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/companyapplications.php',
+			cache: false,
+			success: function(result){	
+				var companyapps = {};
+				for(i = 0; i<result.info.length; i++){
+					companyapps[result.info[i].jtitle] = [];
+				}
+				for(i = 0; i<result.info.length; i++){
+					companyapps[result.info[i].jtitle].push(result.info[i]);
+				}				
+				
+				$scope.companyapplications = companyapps;
+				$scope.$apply();
+			}
+	});	
+});
+
+
+
