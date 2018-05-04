@@ -18,6 +18,7 @@ session_start();
         	    <button type="submit" ng-click="editprofile()" class="btn btn-secondary">Edit</button></legend></form>
     	<legend>{{profile.info[0].suniversity}}</legend>
     	<legend>{{profile.info[0].sdegree}}, {{profile.info[0].smajor}}</legend>
+    	<legend>GPA: {{profile.info[0].sgpa}}</legend>
     	<hr class="my-4">
     	<p>{{profile.info[0].sintro}}</p>
     	<br>
@@ -30,7 +31,7 @@ session_start();
     <div class="right" id="edit">
         <br>
         <br>
-        <form>
+        <form id="profileeditform">
         <label for="exampleInputPassword1">Email: {{profile.info[0].semail}}</label>
         
         <br>
@@ -295,6 +296,19 @@ session_start();
 	      <input class="form-control-file" id="simage" ng-model="simage" name = "simage" aria-describedby="fileHelp" type="file">
 	      <small id="fileHelp" class="form-text text-muted">Recommended size 300*300</small>
 	    </div>	   
+
+		<label for="exampleTextarea">Personal Info Restriction (GPA/Resume)</label>
+		<br>
+        <div class="custom-control custom-radio">
+          <input "ng-model="srestriction" id="customRadio1" name="srestriction" class="custom-control-input" checked="" value="false" type="radio">
+          <label class="custom-control-label" for="customRadio1">Show all info to public</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input "ng-model="srestriction" id="customRadio2" name="srestriction" class="custom-control-input" value="true" type="radio">
+          <label class="custom-control-label" for="customRadio2">Only show all info to friends and company I applied</label>
+        </div>
+        
+        <br>
 
 	    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
     	</form>

@@ -10,6 +10,7 @@
     $smajor = $_POST['smajor'];
     $sgpa = $_POST['sgpa'];
     $sintro = $_POST['sintro'];
+    $srestriction = $_POST['srestriction'];
     if(isset($_FILES['sresume'])){
         $sresume = addslashes($_FILES['sresume']['tmp_name']);
         $sresume = file_get_contents($sresume);
@@ -26,7 +27,7 @@
     
     
 
-    $query = "update student set spassword='".$spassword."', sfname='".$sfname."', slname='".$slname."', suniversity='".$suniversity."', sdegree='".$sdegree."', smajor='".$smajor."', sgpa='".$sgpa."', sintro='".$sintro."', sresume='".$sresume."', simage='".$simage."' where semail='".$semail."'";
+    $query = "update student set spassword='".$spassword."', sfname='".$sfname."', slname='".$slname."', suniversity='".$suniversity."', sdegree='".$sdegree."', smajor='".$smajor."', sgpa='".$sgpa."', sintro='".$sintro."', sresume='".$sresume."', simage='".$simage."', srestriction='".$srestriction."' where semail='".$semail."'";
     $response = @mysqli_query($dbc, $query);
 
     $_SESSION['userid'] = $semail;

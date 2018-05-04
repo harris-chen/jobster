@@ -138,7 +138,8 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 		var smajor = $("#smajor").val();
 		var sgpa = $("#sgpa").val();
 		var sintro = $("#sintro").val();
-
+		var srestriction = $("#registerform").serialize().split('=').pop();
+		
 		var datastring = new FormData();
 		datastring.append('sresume', $('input[type=file]')[0].files[0]);
 		datastring.append('simage', $('input[type=file]')[1].files[0]);
@@ -151,7 +152,8 @@ myApp.controller("registerCtrl", function($scope, $http, $window){
 		datastring.append('smajor', smajor);
 		datastring.append('sgpa', sgpa);
 		datastring.append('sintro', sintro);
-		
+		datastring.append('srestriction', srestriction);
+
 		if(semail == "" || spassword == "" || sfname == "" || slname == "" || suniversity == "" || sdegree == "" || smajor == "" || sgpa == ""){
 			$("#infomsg").html("Please fill out all details");
 		}else if(spassword.length >30 || spassword.length < 6){
@@ -392,6 +394,7 @@ myApp.controller("profileCtrl", function($scope){
 			var smajor = $("#smajor").val();
 			var sgpa = $("#sgpa").val();
 			var sintro = $("#sintro").val();
+			var srestriction = $("#profileeditform").serialize().split('=').pop();
 
 			var datastring = new FormData();
 			datastring.append('sresume', $('input[type=file]')[0].files[0]);
@@ -404,6 +407,7 @@ myApp.controller("profileCtrl", function($scope){
 			datastring.append('smajor', smajor);
 			datastring.append('sgpa', sgpa);
 			datastring.append('sintro', sintro);
+			datastring.append('srestriction', srestriction);
 			
 			if(spassword == "" || sfname == "" || slname == "" || suniversity == "" || sdegree == "" || smajor == "" || sgpa == ""){
 				$("#infomsg").html("Please fill out all details");
@@ -978,6 +982,7 @@ myApp.controller("studentCtrl", function($scope, $http, $routeParams){
 	$("#sregister").show();
 	$("#clogin").hide();
 	$("#cregister").hide();
+	$("#showresume").hide();
 	 var semail = $routeParams.semail;
 	 $.ajax({
 			type: 'POST',
@@ -985,6 +990,11 @@ myApp.controller("studentCtrl", function($scope, $http, $routeParams){
 			cache: false,
 			data: {semail, semail},
 			success: function(result){
+				if("sgpa" in result.info[0]){	
+					$("#showresume").show();
+				}else{
+					$("#showresume").hide();
+				}
 				$scope.profile = result;
 				$scope.$apply();
 			}

@@ -12,8 +12,9 @@
             $sdegree = $row['sdegree'];
             $smajor = $row['smajor'];
             $sintro = $row['sintro'];
+            $sgpa = $row['sgpa'];
             $simage = $row['simage'];
-            $result[] = array('semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'suniversity'=>$suniversity, 'sdegree'=>$sdegree, 'smajor'=>$smajor, 'sintro'=>$sintro, 'simage'=>$simage);
+            $result[] = array('semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'suniversity'=>$suniversity, 'sdegree'=>$sdegree, 'smajor'=>$smajor, 'sintro'=>$sintro, 'simage'=>$simage, 'sgpa'=>$sgpa);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

@@ -25,22 +25,23 @@
     
     
     <div class="right" >
+    <font id="temp123" color="red"></font>
         <br>
         <br>
         <form>
         <legend>{{profile.info[0].sfname}} {{profile.info[0].slname}} </legend></form>
     	<legend>{{profile.info[0].suniversity}}</legend>
     	<legend>{{profile.info[0].sdegree}}, {{profile.info[0].smajor}}</legend>
+    	<legend>GPA: {{profile.info[0].sgpa}}</legend>
     	<hr class="my-4">
     	<p>{{profile.info[0].sintro}}</p>
     	<br>
     	
-    	<?php if(isset($_SESSION['companyid'])){?>
     	<form action = "http://localhost/jobster/webservices/studentresumedownload.php" method="post">
     	<input id="semail" ng-model="semail" name = "semail" type="hidden" value="{{profile.info[0].semail}}">
-    	<button type="submit" class="btn btn-primary">Download Resume</button>
+    	<button id="showresume" type="submit" class="btn btn-primary">Download Resume</button>
     	</form>
-    	<?php }?>
+
     </div>
 </div>
 

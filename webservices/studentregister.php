@@ -22,7 +22,7 @@
     }else{
         $simage = '';
     }
-    
+    $srestriction = $_POST['srestriction'];
     
     $query = "select semail from student";
     $response = @mysqli_query($dbc, $query);
@@ -35,9 +35,9 @@
     if(in_array($_POST['semail'], $a, false)){
         echo "Failed";
     }else{
-        $query = "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?, '" . $simage . "')";
+        $query = "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?, '" . $simage . "', ?)";
         $stmt = mysqli_prepare($dbc,$query);
-        mysqli_stmt_bind_param($stmt,"sssssssdss", $semail, $spassword, $sfname, $slname, $suniversity, $sdegree, $smajor, $sgpa, $sintro, $sresume);
+        mysqli_stmt_bind_param($stmt,"sssssssdsss", $semail, $spassword, $sfname, $slname, $suniversity, $sdegree, $smajor, $sgpa, $sintro, $sresume, $srestriction);
         mysqli_stmt_execute($stmt);
         echo "Success";
         session_start();
