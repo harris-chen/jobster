@@ -64,6 +64,10 @@
             <th>Date Published</th>
             <td>{{viewjob.info[0].jdate}}</td>
           </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{viewjob.info[0].jstatus}}</td>
+          </tr>
           </table>
     </div>
     
@@ -268,8 +272,19 @@
 	      <label for="exampleTextarea">Job Description</label>
 	      <textarea "ng-model="jdescription"  name = "jdescription" class="form-control" id="jdescription" rows="5"></textarea>
 	    </div>
+		
+		<label for="exampleTextarea">Job Status</label>
+		<br>
+        <div class="custom-control custom-radio">
+          <input "ng-model="jstatus" id="customRadio1" name="jstatus" class="custom-control-input" checked="" value="open" type="radio">
+          <label class="custom-control-label" for="customRadio1">Open</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input "ng-model="jstatus" id="customRadio2" name="jstatus" class="custom-control-input" value="closed" type="radio">
+          <label class="custom-control-label" for="customRadio2">Closed</label>
+        </div>
 
-
+		<br>
 	    <button type="submit" id="companymodifyjobsubmit" class="btn btn-primary">Submit</button>
 	    
 	    <font id="editjobinfomsg" color="red"></font>

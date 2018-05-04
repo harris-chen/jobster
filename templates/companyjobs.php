@@ -10,6 +10,7 @@
 	      <th id="jcityjob" scope="col"></th>
 	      <th id="jstatejob" scope="col"></th>
 	      <th id="jdatejob" scope="col"></th>
+	      <th id="statusjob" scope="col"></th>
 	      <th id="acjob" scope="col"></th>
 	    </tr>
 	  </thead>
@@ -19,6 +20,7 @@
 	      <td>{{r.jcity}}</td>
 	      <td>{{r.jstate}}</td>
 	      <td>{{r.jdate}}</td>
+	      <td>{{r.jstatus}}</td>
 	      <td><a ng-href="#/jobs/{{r.jid}}" class="btn btn-primary">View Detail</a></td>
 	    </tr>
 	  </tbody>

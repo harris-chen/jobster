@@ -6,6 +6,7 @@
     if($response){
         while($row = mysqli_fetch_array($response)){
             $cname = $row['cname'];
+            $jstatus = $row['jstatus'];
             $jid = $row['jid'];
             $jtitle = $row['jtitle'];
             $jcity = ucfirst($row['jcity']);
@@ -16,7 +17,7 @@
             $jmajor = $row['jmajor'];
             $jsalary = $row['jsalary'];
             $jdate = $row['jdate'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'jdescription'=>$jdescription, 'jdegree'=>$jdegree, 'jmajor'=>$jmajor, 'jsalary'=>$jsalary, 'jdate'=>$jdate, 'cname'=>$cname);
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'jdescription'=>$jdescription, 'jdegree'=>$jdegree, 'jmajor'=>$jmajor, 'jsalary'=>$jsalary, 'jdate'=>$jdate, 'cname'=>$cname, 'jstatus'=>$jstatus);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

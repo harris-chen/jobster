@@ -1,7 +1,7 @@
 <div ng-controller="companyapplicationsCtrl">
 	<br>
 	<div ng-repeat="r in companyapplications" >
-	<legend>{{r[0].jtitle}}</legend>
+	<legend>{{r[0].jtitle}} ({{r[0].jstatus}})</legend>
 	<table class="table table-hover">
 	<thead>
 		<tr>

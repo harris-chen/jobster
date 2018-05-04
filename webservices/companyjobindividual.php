@@ -3,7 +3,7 @@
     session_start();
     $cid = $_POST['cid'];
     
-    $query = "select * from job where cid = ".$cid." order by jtitle";
+    $query = "select * from job where cid = ".$cid." and jstatus='open' order by jtitle";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){

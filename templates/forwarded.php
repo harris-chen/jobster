@@ -31,7 +31,7 @@
 	      <td>{{r.cname}}</td>
 	      <td>{{r.jtitle}}</td>
 	      <td>{{r.fintro}}</td>
-	      <td><a ng-href="#/jobs/{{r.jid}}" class="btn btn-primary">View Detail</a></td>
+	      <td><a ng-href="#/jobs/{{r.jid}}" class="btn btn-primary">View Job</a></td>
 	    </tr>
 	  </tbody>
 	</table> 

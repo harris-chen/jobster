@@ -12,7 +12,8 @@
             $jcity = ucfirst($row['jcity']);
             $jstate = $row['jstate'];
             $jdate = $row['jdate'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'cname'=>$cname, 'adate'=>$adate);
+            $jstatus = $row['jstatus'];
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'cname'=>$cname, 'adate'=>$adate, 'jstatus'=>$jstatus);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

@@ -12,16 +12,17 @@
     $cid = reset($a);
     
     
-    $query = "select * from job where cid = ".$cid." order by jtitle";
+    $query = "select * from job where cid = ".$cid." order by jstatus desc, jtitle asc";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
+            $jstatus = $row['jstatus'];
             $jid = $row['jid'];
             $jtitle = $row['jtitle'];
             $jcity = ucfirst($row['jcity']);
             $jstate = $row['jstate'];
             $jdate = $row['jdate'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate);
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate, 'jstatus'=>$jstatus);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

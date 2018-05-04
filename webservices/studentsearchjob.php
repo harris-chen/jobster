@@ -27,7 +27,7 @@
         $jdegree = $_POST['jdegree'];
     }
     
-    $query = "select * from job natural join company where cname like '%".$cname."%' and jtitle like '%".$jtitle."%' and jcity like '%".$jcity."%' and jstate like '%".$jstate."%' and jsalary >= '".$jsalary."' and jdegree like '%".$jdegree."%' and jmajor like '%".$jmajor."%' and jdescription like '%".$jdescription."%' order by jdate desc";
+    $query = "select * from job natural join company where cname like '%".$cname."%' and jtitle like '%".$jtitle."%' and jcity like '%".$jcity."%' and jstate like '%".$jstate."%' and jsalary >= '".$jsalary."' and jdegree like '%".$jdegree."%' and jmajor like '%".$jmajor."%' and jdescription like '%".$jdescription."%' and jstatus='open' order by jdate desc";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){

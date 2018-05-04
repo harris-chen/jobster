@@ -13,10 +13,11 @@
     $cid = reset($a);
     
     
-    $query = "select * from apply natural join job natural join company natural join student where cid=".$cid." order by jtitle asc";
+    $query = "select * from apply natural join job natural join company natural join student where cid=".$cid." order by jstatus desc, jtitle asc";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
+            $jstatus = $row['jstatus'];
             $semail = $row['semail'];
             $sfname = $row['sfname'];
             $slname = $row['slname'];
@@ -29,7 +30,7 @@
             $jcity = ucfirst($row['jcity']);
             $jstate = $row['jstate'];
             $jdate = $row['jdate'];
-            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate,'semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'sdegree'=>$sdegree, 'suniversity'=>$suniv, 'smajor'=>$smajor, 'sgpa'=>$sgpa);
+            $result[] = array('jid'=>$jid,'jtitle'=>$jtitle, 'jcity'=>$jcity, 'jstate'=>$jstate, 'jdate'=>$jdate,'semail'=>$semail, 'sfname'=>$sfname, 'slname'=>$slname, 'sdegree'=>$sdegree, 'suniversity'=>$suniv, 'smajor'=>$smajor, 'sgpa'=>$sgpa, 'jstatus'=>$jstatus);
         }
         $json = array('status'=>1, 'info'=>$result);
     }else{

@@ -24,6 +24,7 @@
 	      <th id="cnamejob" scope="col"></th>
 	      <th id="jtitlejob" scope="col"></th>
 	      <th id="adatejob" scope="col"></th>
+	      <th id="statusjob" scope="col"></th>
 	      <th id="acjob" scope="col"></th>
 	    </tr>
 	  </thead>
@@ -32,6 +33,7 @@
 	      <td>{{r.cname}}</td>
 	      <td>{{r.jtitle}}</td>
 	      <td>{{r.adate}}</td>
+	      <td>{{r.jstatus}}</td>
 	      <td><a ng-href="#/jobs/{{r.jid}}" class="btn btn-primary">View Detail</a></td>
 	    </tr>
 	  </tbody>

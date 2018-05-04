@@ -32,7 +32,7 @@
     $cid = reset($a);
     
     
-    $query = "INSERT INTO job VALUES('',".$cid.",?,?,?,?,?,?,?,NOW())";
+    $query = "INSERT INTO job VALUES('',".$cid.",?,?,?,?,?,?,?,NOW(),'open')";
     $stmt = mysqli_prepare($dbc,$query);
     mysqli_stmt_bind_param($stmt,"sssssss",$jcity,$jstate,$jtitle,$jsalary,$jdegree,$jmajor,$jdescription);
     mysqli_stmt_execute($stmt);

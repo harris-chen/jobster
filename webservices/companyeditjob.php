@@ -25,9 +25,10 @@
         $jdegree = $_POST['jdegree'];
     }
     $jdescription = $_POST['jdescription'];
+    $jstatus = $_POST['jstatus'];
     
    
     
-    $query = "update job set jtitle='".$jtitle."', jcity='".$jcity."', jstate='".$jstate."', jsalary=".$jsalary.", jmajor='".$jmajor."', jdegree='".$jdegree."',jdescription='".$jdescription."', jdate=NOW() where jid=".$jid."";
+    $query = "update job set jtitle='".$jtitle."', jcity='".$jcity."', jstate='".$jstate."', jsalary=".$jsalary.", jmajor='".$jmajor."', jdegree='".$jdegree."',jdescription='".$jdescription."', jdate=NOW(), jstatus='".$jstatus."' where jid=".$jid."";
     $response = @mysqli_query($dbc, $query);
  ?>

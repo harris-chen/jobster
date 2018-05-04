@@ -106,6 +106,14 @@ myApp.config(function ($routeProvider,$locationProvider) {
 		templateUrl: 'templates/companyapplications.php',
 		controller: 'companyapplicationsCtrl'
 	})
+	.when('/messages', {
+		templateUrl: 'templates/messages.php',
+		controller: 'messagesCtrl'
+	})
+	.when('/chatroom/:semail', {
+		templateUrl: 'templates/chatroom.php',
+		controller: 'chatroomCtrl'
+	})
 });
 
 myApp.controller("defaultCtrl", function($scope){
@@ -620,6 +628,7 @@ myApp.controller("companyjobsCtrl", function($scope){
 				$("#jcityjob").html("City");
 				$("#jstatejob").html("State");
 				$("#jdatejob").html("Post Date");
+				$("#statusjob").html("Status");
 				$scope.joblength = result.info.length;
 				$scope.jobs = result;
 				$scope.$apply();
@@ -659,7 +668,6 @@ myApp.controller("companyviewjobCtrl", function($scope, $http, $routeParams){
 			$("#companymodifyjobsubmit").unbind("click").click(function(){
 				var datastring = $("#companyeditjobform").serialize();
 				var jtitle = $("#jtitle").val();
-				
 				if(jtitle == ""){
 					$("#editjobinfomsg").html("Please fill out job title");
 				}else{
@@ -953,6 +961,7 @@ myApp.controller("applicationCtrl", function($scope){
 				$("#cnamejob").html("Company Name");
 				$("#jtitlejob").html("Title");
 				$("#adatejob").html("Applied Date");
+				$("#statusjob").html("Status");
 				$scope.applicationlength = result.info.length;
 				$scope.applications = result;
 				$scope.$apply();
@@ -1049,5 +1058,73 @@ myApp.controller("companyapplicationsCtrl", function($scope, $http, $routeParams
 	});	
 });
 
-
-
+myApp.controller("messagesCtrl", function($scope, $http, $routeParams){
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentshowfriend.php',
+			cache: false,
+			success: function(result){
+				$scope.friendlength = result.info.length;
+				$scope.friends = result;
+				$scope.$apply();
+			},
+	 		error: function(XMLHttpRequest, textStatus, errorThrown){
+	 			$scope.friendlength = 0
+	 			$scope.friends = "";
+				$scope.$apply();
+	 		}
+	});
+});
+myApp.controller("chatroomCtrl", function($scope, $http, $routeParams){
+	var semail = $routeParams.semail;
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentshowfriend.php',
+			cache: false,
+			success: function(result){
+				$scope.friendlength = result.info.length;
+				$scope.friends = result;
+				$scope.$apply();
+			},
+	 		error: function(XMLHttpRequest, textStatus, errorThrown){
+	 			$scope.friendlength = 0
+	 			$scope.friends = "";
+				$scope.$apply();
+	 		}
+	});
+	 $.ajax({
+			type: 'POST',
+			url: 'http://localhost/jobster/webservices/studentmessage.php',
+			cache: false,
+			data: {semail, semail},
+			success: function(result){
+				$scope.messages = result;
+				$scope.$apply();
+			}
+	});
+	 $("#message").keypress(function (e) {
+		 if(e.which == 13 && !e.shiftKey) {
+			 var datastring = $("#chatroomform").serialize();
+			 $.ajax({
+					type: 'POST',
+					url: 'http://localhost/jobster/webservices/studentsendmessage.php',
+					cache: false,
+					data: datastring +'&semail=' + semail,
+					success: function(result){
+						 $.ajax({
+								type: 'POST',
+								url: 'http://localhost/jobster/webservices/studentmessage.php',
+								cache: false,
+								data: {semail, semail},
+								success: function(result){
+									$scope.messages = result;
+									$scope.$apply();
+								}
+						});						
+					}
+			});		
+			 e.preventDefault();
+			 document.getElementById("message").value = "";
+		 }
+	 });
+});

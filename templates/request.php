@@ -8,6 +8,9 @@
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" >Friend Requests</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#messages">Messages</a>
+  </li>
 </ul>
 
 <div ng-controller="requestCtrl">

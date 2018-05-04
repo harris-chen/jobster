@@ -1,7 +1,7 @@
 <?php 
     require_once('connect.php');
     session_start();
-    $query = "select * from follow natural join job natural join company where semail='".$_SESSION['userid']."' order by jdate desc";
+    $query = "select * from follow natural join job natural join company where semail='".$_SESSION['userid']."' and jstatus='open' order by jdate desc";
     $response = @mysqli_query($dbc, $query);
     if($response){
         while($row = mysqli_fetch_array($response)){
