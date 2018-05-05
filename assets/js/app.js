@@ -1001,6 +1001,10 @@ myApp.controller("studentCtrl", function($scope, $http, $routeParams){
 	});
 });
 myApp.controller("feedsCtrl", function($scope, $http, $routeParams){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentjobifollow.php',
@@ -1017,6 +1021,10 @@ myApp.controller("feedsCtrl", function($scope, $http, $routeParams){
 	});
 });
 myApp.controller("forwardedCtrl", function($scope, $http, $routeParams){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentforwarded.php',
@@ -1032,6 +1040,10 @@ myApp.controller("forwardedCtrl", function($scope, $http, $routeParams){
 	});	
 });
 myApp.controller("notificationsCtrl", function($scope, $http, $routeParams){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentnotifications.php',
@@ -1049,6 +1061,10 @@ myApp.controller("notificationsCtrl", function($scope, $http, $routeParams){
 });
 
 myApp.controller("companyapplicationsCtrl", function($scope, $http, $routeParams){
+	$("#slogin").hide();
+	$("#sregister").hide();
+	$("#clogin").show();
+	$("#cregister").show();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/companyapplications.php',
@@ -1069,6 +1085,10 @@ myApp.controller("companyapplicationsCtrl", function($scope, $http, $routeParams
 });
 
 myApp.controller("messagesCtrl", function($scope, $http, $routeParams){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentshowfriend.php',
@@ -1086,6 +1106,10 @@ myApp.controller("messagesCtrl", function($scope, $http, $routeParams){
 	});
 });
 myApp.controller("chatroomCtrl", function($scope, $http, $routeParams){
+	$("#slogin").show();
+	$("#sregister").show();
+	$("#clogin").hide();
+	$("#cregister").hide();
 	var semail = $routeParams.semail;
 	 $.ajax({
 			type: 'POST',
@@ -1102,6 +1126,7 @@ myApp.controller("chatroomCtrl", function($scope, $http, $routeParams){
 				$scope.$apply();
 	 		}
 	});
+	 setInterval(function() {
 	 $.ajax({
 			type: 'POST',
 			url: 'http://localhost/jobster/webservices/studentmessage.php',
@@ -1110,8 +1135,14 @@ myApp.controller("chatroomCtrl", function($scope, $http, $routeParams){
 			success: function(result){
 				$scope.messages = result;
 				$scope.$apply();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				$scope.messages ="";
+				$scope.$apply();
 			}
 	});
+	 }, 1000);
+	 
 	 $("#message").keypress(function (e) {
 		 if(e.which == 13 && !e.shiftKey) {
 			 var datastring = $("#chatroomform").serialize();
