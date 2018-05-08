@@ -264,6 +264,7 @@
 	      <th id="dg" scope="col"></th>
 	      <th id="mg" scope="col"></th>
 	      <th id="ac" scope="col"></th>
+	      <th id="ac2" scope="col"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -275,6 +276,7 @@
 	      <td>{{network.sdegree}}</td>
 	      <td>{{network.smajor}}</td>
 	      <td><button type="submit" ng-click="addfriend($index)" class="btn btn-primary">Add Friend</button></td>
+	      <td><a ng-href="#/students/{{network.semail}}" class="btn btn-info">View info</a></td>
 	    </tr>
 	  </tbody>
 	  <font id="msg" color="red"></font>
